@@ -3,16 +3,17 @@ import { ApiService } from '../../services/api.service';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
   public form = {
-    email: null,
+    username: null,
     password: null
   };
 
@@ -22,8 +23,9 @@ export class LoginComponent implements OnInit {
       private Api: ApiService,
       private Token: TokenService,
       private router: Router,
-      private Auth: AuthService
-      ) { }
+      private Auth: AuthService,
+      private ngxSmartModalService: NgxSmartModalService) {
+      }
 
   onSubmit() {
     this.Api.login(this.form).subscribe(
@@ -40,6 +42,8 @@ export class LoginComponent implements OnInit {
 
   handleError(error) {
     this.error = error.error.error;
+    this.ngxSmartModalService.setModalData(this.error, 'loginErrorModal');
+    this.ngxSmartModalService.getModal('loginErrorModal').open();
   }
 
   ngOnInit() {

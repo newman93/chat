@@ -22,5 +22,7 @@
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
     },
-    "dependencies": {}
+    "dependencies": {
+        "angular-font-awesome": "^3.1.2"
+    }
 }
