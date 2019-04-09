@@ -19,8 +19,4 @@ export class ApiService {
   login(data) {
     return this.http.post(`${this.baseUrl}/login`, data);
   }
-
-  sendPasswordResetLink(data) {
-    return this.http.post(`${this.baseUrl}/sendPasswordResetLink`, data);
-  }
 }

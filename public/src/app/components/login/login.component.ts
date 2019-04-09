@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
     this.ngxSmartModalService.getModal('loginErrorModal').open();
   }
 
+  redirectToRegister() {
+    this.router.navigate(['auth/register']);
+  }
+
   ngOnInit() {
   }
 

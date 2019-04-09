@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { TokenService } from '../../services/token.service';
 import { Router } from '@angular/router';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-register',
@@ -11,19 +12,21 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   public form = {
     username: null,
-    email: null,
+    e_mail: null,
     name: null,
     surname: null,
     password: null,
-    password_confirmation: null
+    password_confirmation: null,
+    avatar: null
   };
 
-  public error = [];
+  public error: string[] = [];
 
   constructor(
       private Api: ApiService,
       private Token: TokenService,
-      private router: Router
+      private router: Router,
+      private ngxSmartModalService: NgxSmartModalService
       ) { }
 
   onSubmit() {
@@ -39,7 +42,13 @@ export class RegisterComponent implements OnInit {
   }
 
   handleError(error) {
-    this.error = error.error.errors;
+      for (let errorType in error.error.errors) {
+         for (let errorIndex in error.error.errors['' + errorType + '']) {
+             this.error.push(error.error.errors['' + errorType + '']['' + errorIndex + '']);
+         };
+      };
+      this.ngxSmartModalService.setModalData(this.error.join('\n'), 'registerErrorModal');
+      this.ngxSmartModalService.getModal('registerErrorModal').open();
   }
 
   ngOnInit() {

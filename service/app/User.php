@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'email', 'name', 'surname',
+        'username', 'password', 'e_mail', 'name', 'surname', 'avatar', 'function', 'status'
     ];
 
     /**
@@ -60,5 +61,14 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public static function create(array $attributes = [])
+    {
+        //$model = static::query()->create($attributes);
+
+        var_dump($attributes);
+
+        //return $model;
     }
 }

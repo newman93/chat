@@ -29,7 +29,7 @@ class AuthController extends Controller
         $credentials = request(['username', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Email or password does not exist'], 401);
+            return response()->json(['error' => 'Podano niepoprawny login lub hasło!'], 401);
         }
 
         return $this->respondWithToken($token);
@@ -61,7 +61,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Zostałeś wylogowany!']);
     }
 
     /**
