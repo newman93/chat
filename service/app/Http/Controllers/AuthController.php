@@ -37,7 +37,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        User::create($request->all());
+        User::create([$request]);
 
         return $this->login($request);
     }

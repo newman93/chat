@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Builder;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -66,9 +68,19 @@ class User extends Authenticatable implements JWTSubject
     public static function create(array $attributes = [])
     {
         //$model = static::query()->create($attributes);
+        $attributes = $attributes[0];
+        //var_dump($attributes);
+       if($attributes->hasFile('avatar')) {
 
-        var_dump($attributes);
+            $image       = $attributes->file('avatar');
+            $filename    = $image->getClientOriginalName();
+            mkdir(storage_path('app/public/img/avatars/'.$attributes['username']));
+            $image_resize = Image::make($image->getRealPath());
+            $image_resize->resize(100, 100);
+            $image_resize->save(storage_path('app/public/img/avatars/'.$attributes['username'].'/' .$filename));
 
+        }
+        var_dump(storage_path('app/public/img/avatars/'.$attributes['username']));
         //return $model;
     }
 }

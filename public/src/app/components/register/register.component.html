@@ -1,7 +1,7 @@
 <form id="register-form" class="form-login-register"
       ngNativeValidate
       #registerForm=ngForm (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-  <img id="avatar" src="assets/img/avatars/avatar.png" class="rounded-circle border-3">
+  <img id="avatar" [src]="this.imgSrc" class="rounded-circle border-3">
   <h1 class="h3 mb-3 font-weight-normal">Chat</h1>
   <div class="form-group">
     <div class="input-group">
@@ -72,11 +72,11 @@
   <div class="form-group">
     <label for="avatar-file">Avatar</label>
     <input type="file" name="avatar-file" id="avatar-file"  accept="image/x-png,image/gif,image/jpeg"
-           [(ngModel)]="form.avatar" >
+           (change)="this.uploadFile($event.target.files)" >
     <small id="avatar-hint" class="form-text text-muted">Preferowany rozmiar to 100x100</small><br />
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" name="register"
-          >Rejestracja</button>
+  <button class="btn btn-lg btn-primary btn-block" type="button" name="register"
+          (click)="this.register()">Rejestracja</button>
 </form>
 
 <ngx-smart-modal customClass="modal-content" #registerErrorModal identifier="registerErrorModal" [closable]="false">

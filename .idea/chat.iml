@@ -16,7 +16,9 @@
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/fideloper/proxy" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/fzaninotto/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/service/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/service/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/jakub-onderka/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/laravel/framework" />
@@ -46,9 +48,11 @@
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/phpunit/php-token-stream" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/phpunit/phpunit" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/service/vendor/psr/http-message" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/psr/simple-cache" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/service/vendor/ralouphie/getallheaders" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/ramsey/uuid" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/service/vendor/sebastian/comparator" />

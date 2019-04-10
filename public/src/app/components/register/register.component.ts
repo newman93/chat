@@ -11,14 +11,17 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class RegisterComponent implements OnInit {
   public form = {
-    username: null,
+    username:  null,
     e_mail: null,
     name: null,
     surname: null,
     password: null,
     password_confirmation: null,
-    avatar: null
+    avatar: null,
+    avatar_name: null
   };
+
+  public imgSrc = 'assets/img/avatars/avatar.png';
 
   public error: string[] = [];
 
@@ -28,13 +31,6 @@ export class RegisterComponent implements OnInit {
       private router: Router,
       private ngxSmartModalService: NgxSmartModalService
       ) { }
-
-  onSubmit() {
-    this.Api.register(this.form).subscribe(
-        data => this.handleResponse(data),
-        error => this.handleError(error)
-    );
-  }
 
   handleResponse(data) {
     this.Token.handle(data.access_token);
@@ -52,6 +48,42 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  register() {
+    let formData = new FormData();
+    if (this.form.avatar !== null) {
+        formData.append('avatar', this.form.avatar, this.form.avatar_name);
+    }
+    formData.append('username', this.form.username);
+    formData.append('name', this.form.name);
+    formData.append('surname', this.form.surname);
+    formData.append('password', this.form.password);
+    formData.append('password_confirmation', this.form.password_confirmation);
+    formData.append('e_mail', this.form.e_mail);
+
+    this.Api.register(formData).subscribe(
+      data => this.handleResponse(data),
+      error => this.handleError(error)
+  );
+  }
+
+  uploadFile(files: FileList) {
+      this.form.avatar = files[0];
+      this.form.avatar_name = files[0].name;
+      this.previewFile(files);
+  }
+
+  previewFile(files: FileList) {
+      if (files && files[0]) {
+          let reader = new FileReader();
+
+          reader.onload = (event:any) => {
+              this.imgSrc = reader.result;
+          }
+
+          reader.readAsDataURL(files[0]);
+      }
   }
 
 }
