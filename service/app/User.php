@@ -69,7 +69,7 @@ class User extends Authenticatable implements JWTSubject
     {
         $attributes = $attributes[0];
 
-       if($attributes->hasFile('avatar')) {
+       if ($attributes->hasFile('avatar')) {
             $image       = $attributes->file('avatar');
             $filename    = $image->getClientOriginalName();
             mkdir(storage_path('app/public/img/avatars/'.$attributes['username']));
@@ -87,6 +87,8 @@ class User extends Authenticatable implements JWTSubject
                $inputs[$key] = $value;
            }
        }
+
+       $inputs['function'] = 1;
 
        if (!(array_key_exists('avatar', $inputs))) {
            $inputs['avatar'] = 'assets/img/avatars/avatar.png';
