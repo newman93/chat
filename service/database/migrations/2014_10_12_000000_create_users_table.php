@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('function');
             $table->integer('active')->default(1);
             $table->rememberToken();
+            $table->timestamps();
         });
     }
 

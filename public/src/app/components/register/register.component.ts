@@ -38,11 +38,11 @@ export class RegisterComponent implements OnInit {
   }
 
   handleError(error) {
-      for (let errorType in error.error.errors) {
-         for (let errorIndex in error.error.errors['' + errorType + '']) {
+      for (const errorType in error.error.errors) {
+         for (const errorIndex in error.error.errors['' + errorType + '']) {
              this.error.push(error.error.errors['' + errorType + '']['' + errorIndex + '']);
-         };
-      };
+         }
+      }
       this.ngxSmartModalService.setModalData(this.error.join('\n'), 'registerErrorModal');
       this.ngxSmartModalService.getModal('registerErrorModal').open();
   }
@@ -50,8 +50,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  submit(e) {
+      e.preventDefault();
+      this.register();
+  }
+
+  onSubmit() {   }
+
   register() {
-    let formData = new FormData();
+    const formData = new FormData();
     if (this.form.avatar !== null) {
         formData.append('avatar', this.form.avatar, this.form.avatar_name);
     }
@@ -76,11 +83,11 @@ export class RegisterComponent implements OnInit {
 
   previewFile(files: FileList) {
       if (files && files[0]) {
-          let reader = new FileReader();
+          const reader = new FileReader();
 
-          reader.onload = (event:any) => {
-              this.imgSrc = reader.result;
-          }
+          reader.onload = (event: any) => {
+              this.imgSrc = event.target.result;
+          };
 
           reader.readAsDataURL(files[0]);
       }

@@ -67,20 +67,33 @@ class User extends Authenticatable implements JWTSubject
 
     public static function create(array $attributes = [])
     {
-        //$model = static::query()->create($attributes);
         $attributes = $attributes[0];
-        //var_dump($attributes);
-       if($attributes->hasFile('avatar')) {
 
+       if($attributes->hasFile('avatar')) {
             $image       = $attributes->file('avatar');
             $filename    = $image->getClientOriginalName();
             mkdir(storage_path('app/public/img/avatars/'.$attributes['username']));
             $image_resize = Image::make($image->getRealPath());
             $image_resize->resize(100, 100);
             $image_resize->save(storage_path('app/public/img/avatars/'.$attributes['username'].'/' .$filename));
-
         }
-        var_dump(storage_path('app/public/img/avatars/'.$attributes['username']));
-        //return $model;
+
+       $inputs = [];
+
+       foreach ($attributes->all() as $key=>$value) {
+           if ($key == 'avatar') {
+               $inputs[$key] = '../../service/'.'app/public/img/avatars/'.$attributes['username'].'/' .$filename;
+           } else if ($key != 'avatar_name') {
+               $inputs[$key] = $value;
+           }
+       }
+
+       if (!(array_key_exists('avatar', $inputs))) {
+           $inputs['avatar'] = 'assets/img/avatars/avatar.png';
+       }
+
+        $model = static::query()->create($inputs);
+
+        return $model;
     }
 }
