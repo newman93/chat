@@ -16,3 +16,8 @@
   border: 3px solid white;
 }
 
+@media only screen  and (max-width : 767px) {
+  #user {
+    display: none;
+  }
+}
