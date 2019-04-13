@@ -15,6 +15,7 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthComponent } from './auth/auth.component';
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { UserDataService } from './services/user-data.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
     NgxSmartModalModule.forRoot()
   ],
   providers: [
-      ApiService, TokenService, AuthService, AfterLoginService, BeforeLoginService, NgxSmartModalService
+      ApiService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
+      UserDataService, NgxSmartModalService
   ],
   bootstrap: [AppComponent]
 })
