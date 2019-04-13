@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { TokenService } from '../../services/token.service';
+import { ApiService } from '../../../services/api.service';
+import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { TokenService } from '../../services/token.service';
+import { ApiService } from '../../../services/api.service';
+import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { UserDataService } from '../../services/user-data.service';
+import { UserDataService } from '../../../services/user-data.service';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.Token.handle(data.access_token);
     this.UserData.handle(data);
     this.Auth.changeAuthStatus(true);
-    this.router.navigateByUrl('/profile');
+    this.router.navigate(['/application']);
   }
 
   handleError(error) {
