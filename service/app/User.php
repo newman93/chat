@@ -82,7 +82,7 @@ class User extends Authenticatable implements JWTSubject
 
        foreach ($attributes->all() as $key=>$value) {
            if ($key == 'avatar') {
-               $inputs[$key] = '../../service/'.'app/public/img/avatars/'.$attributes['username'].'/' .$filename;
+               $inputs[$key] = $filename;
            } else if ($key != 'avatar_name') {
                $inputs[$key] = $value;
            }

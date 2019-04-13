@@ -1,3 +1,11 @@
-<p>
-  user-data works!
-</p>
+<div id="user" class="row">
+  <div>
+    <img [src]="this.userData.avatar" class="rounded-circle border-3">
+  </div>
+  <div class="user-description">
+    <span>{{ this.userData.username }}</span>
+  </div>
+  <div class="user-description">
+    <span>{{ this.userData.name }} {{ this.userData.surname }}</span>
+  </div>
+</div>
