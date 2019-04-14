@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
+
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
@@ -8,9 +9,10 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class ApplicationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
-  }
 
+  }
 }

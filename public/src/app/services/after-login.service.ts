@@ -14,7 +14,7 @@ export class AfterLoginService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
       Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         if (this.Token.loggedIn() === false) {
-            this.router.navigateByUrl('/auth/login');
+            this.router.navigate(['/auth/login']);
         }
         return this.Token.loggedIn();
   }

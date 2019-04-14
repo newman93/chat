@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
     this.Token.handle(data.access_token);
     this.UserData.handle(data);
     this.Auth.changeAuthStatus(true);
-    this.router.navigate(['/application']);
+    //this.router.navigate(['/application']);
+    window.location.href = 'http://localhost:4200/application';
   }
 
   handleError(error) {

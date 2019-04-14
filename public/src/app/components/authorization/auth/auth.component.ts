@@ -9,7 +9,6 @@ import { Component, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@ang
 export class AuthComponent implements OnInit, OnDestroy {
 
   constructor(private renderer: Renderer2) {
-    this.renderer.addClass(document.body, 'text-center');
   }
 
   ngOnDestroy() {
@@ -17,6 +16,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.renderer.addClass(document.body, 'text-center');
   }
 
 }

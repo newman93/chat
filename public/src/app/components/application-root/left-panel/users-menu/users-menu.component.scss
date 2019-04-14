@@ -1,0 +1,13 @@
+#users-menu {
+  height: 55px;
+}
+
+.user-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% / 3);
+  float: left;
+  height: 100%;
+}
+
