@@ -3,6 +3,7 @@ import { ApiService } from '../../../services/api.service';
 import { TokenService } from '../../../services/token.service';
 import { Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { UserDataService } from '../../../services/user-data.service';
 
 @Component({
   selector: 'app-register',
@@ -29,12 +30,15 @@ export class RegisterComponent implements OnInit {
       private Api: ApiService,
       private Token: TokenService,
       private router: Router,
+      private UserData: UserDataService,
       private ngxSmartModalService: NgxSmartModalService
       ) { }
 
   handleResponse(data) {
     this.Token.handle(data.access_token);
-    this.router.navigateByUrl('/profile');
+    this.UserData.handle(data);
+    //this.router.navigateByUrl('/profile');
+      window.location.href = 'http://localhost:4200/application';
   }
 
   handleError(error) {
