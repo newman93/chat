@@ -15,8 +15,10 @@ class CreateInvitationsTable extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username');
-            $table->string('contact');
+            $table->unsignedBigInteger('username');
+            $table->unsignedBigInteger('contact');
+            $table->foreign('username')->references('id')->on('users');
+            $table->foreign('contact')->references('id')->on('users');
             $table->timestamps();
         });
     }

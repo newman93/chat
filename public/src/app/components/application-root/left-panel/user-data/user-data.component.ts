@@ -8,6 +8,7 @@ import { UserDataService } from '../../../../services/user-data.service';
 })
 export class UserDataComponent implements OnInit {
   public userData = {
+    id: null,
     avatar: null,
     username: null,
     name: null,
@@ -19,6 +20,7 @@ export class UserDataComponent implements OnInit {
   constructor(private userDataService: UserDataService) { }
 
   ngOnInit() {
+    this.userData.username = this.userDataService.get('id');
     this.userData.username = this.userDataService.get('username');
     this.userData.name = this.userDataService.get('name');
     this.userData.surname = this.userDataService.get('surname');

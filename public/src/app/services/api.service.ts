@@ -19,4 +19,8 @@ export class ApiService {
   login(data) {
     return this.http.post(`${this.baseUrl}/login`, data);
   }
+
+  getContacts(username) {
+      return this.http.get(`${this.baseUrl}/contacts/${ username }`);
+  }
 }

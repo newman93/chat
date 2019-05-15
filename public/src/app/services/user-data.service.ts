@@ -12,6 +12,7 @@ export class UserDataService {
   }
 
   set(data) {
+    localStorage.setItem('username', data.id);
     localStorage.setItem('username', data.username);
     localStorage.setItem('name', data.name);
     localStorage.setItem('surname', data.surname);
@@ -20,6 +21,7 @@ export class UserDataService {
   }
 
   remove() {
+    localStorage.removeItem('id');
     localStorage.removeItem('username');
     localStorage.removeItem('name');
     localStorage.removeItem('surname');

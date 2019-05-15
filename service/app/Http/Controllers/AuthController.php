@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
-use App\User;
+use App\Users;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        User::create([$request]);
+        Users::create([$request]);
 
         return $this->login($request);
     }
@@ -87,6 +87,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
+            'id' => auth()->user()->id,
             'username' => auth()->user()->username,
             'name' => auth()->user()->name,
             'surname' => auth()->user()->surname,

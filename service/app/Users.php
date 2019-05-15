@@ -9,9 +9,14 @@ use Illuminate\Database\Eloquent\Builder;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
-class User extends Authenticatable implements JWTSubject
+class Users extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+
+    public function contacts(){
+        return $this->has_many('\App\Contacts','contacts');
+
+    }
 
     /**
      * The attributes that are mass assignable.
