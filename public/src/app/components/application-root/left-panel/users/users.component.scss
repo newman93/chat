@@ -4,3 +4,60 @@
   height: calc(100% - 235px);
 }
 
+.user {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  margin-top: 5px;
+  height: 75px;
+  cursor: pointer;
+}
+
+.contact {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 75px;
+}
+
+.user-avatar {
+  width: 65px;
+  float: left;
+  display: inline-block;
+  position: relative;
+}
+
+.status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.online {
+  background-color: #92fc00;
+}
+
+.offline {
+  background-color: red;
+}
+
+.user-avatar img {
+  width:65px;
+  height:auto;
+}
+
+#search {
+  padding-left: 10px;
+}
+
+.user-name {
+  width: calc(100% - 65px);
+  padding-left: 5%;
+  float: left;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}

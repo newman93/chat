@@ -12,7 +12,7 @@ class ContactsController extends Controller
 
     }
 
-    public function contacts($username) {
-        return      Contact::with('contact')->where('username', '=', $username)->get();
+    public function contacts($usernameId) {
+        return      Contact::with('contact')->where('username', '=', $usernameId)->get();
     }
 }

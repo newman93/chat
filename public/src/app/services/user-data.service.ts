@@ -12,7 +12,7 @@ export class UserDataService {
   }
 
   set(data) {
-    localStorage.setItem('username', data.id);
+    localStorage.setItem('id', data.id);
     localStorage.setItem('username', data.username);
     localStorage.setItem('name', data.name);
     localStorage.setItem('surname', data.surname);

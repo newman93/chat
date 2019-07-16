@@ -1,14 +1,14 @@
 <div id="my-users">
-    <!--<div class="user" *ngFor="let user of this.users">-->
-        <!--<div class="user-avatar">-->
-            <!--<img [src]="user.avatar" class="rounded-circle border-3">-->
-            <!--<div class="status {{ user.status == 1? 'online' : 'offline' }}">-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div  class="user-name">-->
-            <!--<div class="user-description1">-->
-                <!--<span>{{ user.name  }} {{ user.surname }}</span>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="user" *ngFor="let user of this.users">
+        <div class="user-avatar">
+            <img [src]="user.contact.avatar" class="rounded-circle border-3">
+            <div class="status {{ user.contact.status == 1? 'online' : 'offline' }}">
+            </div>
+        </div>
+        <div  class="user-name">
+            <div class="user-description1">
+                <span>{{ user.contact.name  }} {{ user.contact.surname }}</span>
+            </div>
+        </div>
+    </div>
 </div>
