@@ -26,6 +26,7 @@ import { EmptyRightPanelComponent } from './components/application-root/right-pa
 import { SettingsComponent } from './components/application-root/right-panel/settings/settings.component';
 import { MessagesComponent } from './components/application-root/right-panel/messages/messages.component';
 import { AddUsersComponent } from './components/application-root/right-panel/add-users/add-users.component';
+import { MessageService } from './services/messages.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { AddUsersComponent } from './components/application-root/right-panel/add
   ],
   providers: [
       ApiService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
-      UserDataService, NgxSmartModalService
+      UserDataService, NgxSmartModalService, MessageService
   ],
   bootstrap: [AppComponent]
 })

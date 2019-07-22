@@ -1,0 +1,120 @@
+#user-label {
+  color: #303030;
+  font-weight: 600;
+  height: 63px;
+  width: 100%;
+}
+
+#message {
+  width: 100%;
+  height: calc(100% - 63px - 73px);
+  overflow-y: auto;
+}
+
+#input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 73px;
+  width: 100%;
+}
+
+#text-message {
+  margin: 5px;
+  width: calc(100% - 75px);
+  float: left;
+}
+
+#message-button {
+  width: 65px;
+  height: 73px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#user-label-avatar {
+  width: 49px;
+  margin: 6px;
+  float: left;
+}
+
+#user-label img {
+  width: 49px;
+  height: auto;
+}
+
+#user-label-name {
+  width: calc(100% - 65px);
+  height: 63px;
+  float: left;
+  display: flex;
+  align-items: center;
+}
+
+#user-label-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 50px;
+  float: left;
+  height: 100%;
+  display: none;
+}
+
+#user-label-description {
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-back {
+  background-color: #303030;
+  color: white;
+}
+
+.btn-send {
+  background-color: #303030;
+  color: white;
+}
+
+.main-message {
+  margin: 15px;
+}
+
+.message-user-name {
+  font-weight: 600;
+  color: #303030;
+}
+
+.message-user-date {
+  color: #6F7376;
+}
+
+.message {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.guest-message {
+  background-color: #61C06F;
+}
+
+.sender-message {
+  background-color: #79C6EC;
+}
+
+.sender {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sender .message-user-date {
+  margin-left: 5px;
+}
+
+textarea {
+  resize: none;
+}

@@ -23,4 +23,8 @@ export class ApiService {
   getContacts(username) {
       return this.http.get(`${this.baseUrl}/contacts/${ username }`);
   }
+
+  getMessages(fromUsernameId, toUsernameId) {
+    return this.http.get(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/load`);
+  }
 }

@@ -51,7 +51,7 @@ const routes: Routes = [
         component: SettingsComponent,
       },
       {
-        path: 'messages',
+        path: 'messages/:fromUsernameId',
         component: MessagesComponent
       },
       {

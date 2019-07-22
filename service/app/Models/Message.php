@@ -45,8 +45,13 @@ class Message extends Eloquent
 		'date'
 	];
 
-	public function user()
+	public function fromUsername()
 	{
-		return $this->belongsTo(\App\Models\User::class, 'to_username');
+		return $this->belongsTo(\App\Models\User::class, 'from_username');
 	}
+
+	public function toUsername()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'to_username');
+    }
 }

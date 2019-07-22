@@ -1,3 +1,44 @@
-<p>
-  messages works!
-</p>
+<div id="user-label">
+  <div id="user-label-button">
+    <button class="btn btn-back" type="button" id="back-users"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+  </div>
+  <div id="user-label-avatar">
+    <img *ngIf="this.data" [src]="this.data.avatar" class="rounded-circle border-2">
+  </div>
+  <div  id="user-label-name">
+    <div id="user-label-description">
+      <span *ngIf="this.data">{{ this.data.name  }} {{ this.data.surname }}</span>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+</div>
+<div id="message">
+  <div *ngIf="this.data">
+    <div class="main-message"  *ngFor="let message of this.data.messages">
+      <div class="message-user {{ (message.from_username.id == this.data.id) ? 'sender' : 'guest' }}">
+        <span class="message-user-name">{{ message.from_username.name }} {{ message.from_username.surname }}</span>
+        <span class="message-user-date">
+          <small> {{ message.date | date:'dd/MM/yyyy'}} {{ message.date | date:'hh:ss' }}</small>
+        </span>
+      </div>
+      <div class="message {{ (message.from_username.id == this.data.id) ? 'sender' : 'guest' }}-message">
+        <span>{{ message.message }}</span>
+      </div>
+    </div>
+    </div>
+</div>
+<div id="input">
+  <div class="line">
+  </div>
+  <form action="" method="POST" id="send-message">
+    <div id="text-message">
+      <textarea type="text" class="form-control" name="message" placeholder="Wpisz wiadomość..."></textarea>
+    </div>
+    <div id="message-button">
+      <button class="btn btn-send">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+    </div>
+  </form>
+</div>
