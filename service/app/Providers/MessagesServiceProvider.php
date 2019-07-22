@@ -18,11 +18,13 @@ class MessagesServiceProvider
     {
         $fromUsername = User::find($fromUsernameId);
 
-        $data['name'] = $fromUsername->name;
-        $data['surname'] = $fromUsername->surname;
-        $data['avatar'] = $fromUsername->avatar;
-        $data['id'] = $fromUsername->id;
-
+        if (!is_null($fromUsername)) {
+            $data['name'] = $fromUsername->name;
+            $data['surname'] = $fromUsername->surname;
+            $data['avatar'] = $fromUsername->avatar;
+            $data['id'] = $fromUsername->id;
+            $data['username'] = $fromUsername->username;
+        }
         $data['messages'] =
              Message::with('fromUsername', 'toUsername')
             ->whereRaw('(from_username =  ? AND to_username = ?) 
@@ -33,5 +35,15 @@ class MessagesServiceProvider
             )->orderBy('date', 'ASC')->get();
 
         return $data;
+    }
+
+    public function sendMessage($fromUsernameId, $toUsernameId, $message) {
+        return Message::create([
+            'from_username' => $fromUsernameId,
+            'to_username' => $toUsernameId,
+            'message' => $message,
+            'to_read' => 1,
+            'date' => date("Y-m-d H:i:s")
+        ]);
     }
 }

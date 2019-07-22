@@ -20,4 +20,5 @@ Route::group([
         return response($file, 200)->header('Content-Type', 'image/jpeg');
     });
     Route::get('messages/from/{fromUsernameId}/to/{toUsernameId}/load', 'MessagesController@loadMessages');
+    Route::post('messages/from/{fromUsernameID}/to/{toUsernameId}/send', 'MessagesController@sendMessage');
 });

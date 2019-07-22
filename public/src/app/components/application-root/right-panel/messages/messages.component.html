@@ -33,10 +33,10 @@
   </div>
   <form action="" method="POST" id="send-message">
     <div id="text-message">
-      <textarea type="text" class="form-control" name="message" placeholder="Wpisz wiadomość..."></textarea>
+      <textarea type="text" class="form-control" name="message" placeholder="Wpisz wiadomość..." #message></textarea>
     </div>
     <div id="message-button">
-      <button class="btn btn-send">
+      <button class="btn btn-send" (click)="sendMessage(message)">
         <i class="fa fa-arrow-right"></i>
       </button>
     </div>

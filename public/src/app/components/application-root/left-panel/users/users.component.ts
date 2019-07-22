@@ -38,9 +38,7 @@ export class UsersComponent implements OnInit {
     this.users = data;
     this.users.map((value, index) =>
         {
-            if (!(value.contact.avatar.indexOf('/') > -1)) {
-              value.contact.avatar = `${this.baseUrl}/images/${value.contact.username}/${value.contact.avatar}`;
-            }
+          value.contact.avatar = this.userDataService.getAvatar(value.contact.avatar, value.contact.username);
           return value;
         }
     );

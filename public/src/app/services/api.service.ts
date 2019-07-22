@@ -27,4 +27,11 @@ export class ApiService {
   getMessages(fromUsernameId, toUsernameId) {
     return this.http.get(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/load`);
   }
+
+  sendMessage(fromUsernameId, toUsernameId, message) {
+    const params = new URLSearchParams();
+    params.append('message', message);
+
+    return this.http.post(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/send`, params).subscribe();
+  }
 }

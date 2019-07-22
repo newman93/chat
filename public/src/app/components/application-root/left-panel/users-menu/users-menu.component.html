@@ -2,12 +2,18 @@
   <div class="line">
   </div>
   <div class="user-buttons">
-    <button class="btn btn-light" type="button" id="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button class="btn btn-light" type="button" id="add" (click)="getAddUser()">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
   </div>
   <div class="user-buttons">
-    <button class="btn btn-light" type="button" id="show-contacts"><i class="fa fa-users" aria-hidden="true"></i></button>
+    <button class="btn btn-light" type="button" id="show-contacts" (click)="getContacts()">
+      <i class="fa fa-users" aria-hidden="true"></i>
+    </button>
   </div>
   <div class="user-buttons">
-    <button class="btn btn-light" id="settings" type="button"><i class="fa fa-address-card" aria-hidden="true"></i></button>
+    <button class="btn btn-light" id="settings" type="button" (click)="getSettings()">
+      <i class="fa fa-address-card" aria-hidden="true"></i>
+    </button>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserDataService {
+  private baseUrl = 'http://localhost:8000/api';
 
   constructor() { }
 
@@ -31,5 +32,13 @@ export class UserDataService {
 
   get(key) {
     return localStorage.getItem(key);
+  }
+
+  getAvatar(avatar, username) {
+    if (!(avatar.indexOf('/') > -1)) {
+      return `${this.baseUrl}/images/${username}/${avatar}`;
+    } else {
+      return avatar;
+    }
   }
 }

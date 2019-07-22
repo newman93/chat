@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-menu',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  getSettings() {
+    this.router.navigate(['application/settings']);
+  }
+
+  getAddUser() {
+    this.router.navigate(['application/add']);
+  }
+
+  getContacts() {
+    this.router.navigate(['/application']);
+  }
 }

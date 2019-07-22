@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserDataService} from "../../../../services/user-data.service";
 import {ApiService} from "../../../../services/api.service";
 import {MessageService} from "../../../../services/messages.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-messages',
@@ -19,13 +19,19 @@ export class MessagesComponent implements OnInit {
   constructor(
       private userDataService: UserDataService,
       private Api: ApiService,
-      private activatedRoute: ActivatedRoute
+      private activatedRoute: ActivatedRoute,
+      private router: Router
       // private messageService: MessageService
   ) {
     // this.messageService.listen().subscribe((m:any) => {
     //     console.log(2);
     //     this.getMessages(m);
     // });
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      // do your task for before route
+
+      return false;
+    }
   }
 
   ngOnInit() {
@@ -42,21 +48,24 @@ export class MessagesComponent implements OnInit {
 
   handleResponse(data) {
     this.data = data;
+    this.data.avatar = this.userDataService.getAvatar(data.avatar, data.username);
 
-    console.log(data);
-    // this.users.map((value, index) =>
-    //     {
-    //       if (!(value.contact.avatar.indexOf('/') > -1)) {
-    //         value.contact.avatar = `${this.baseUrl}/images/${value.contact.username}/${value.contact.avatar}`;
-    //       }
-    //       return value;
-    //     }
-    // );
+    this.data.messages.map((value, index) =>
+        {
+          value.from_username.avatar = this.userDataService.getAvatar(value.from_username.avatar, value.from_username.username);
+          value.to_username.avatar = this.userDataService.getAvatar(value.to_username.avatar, value.to_username.username);
+          return value;
+        }
+    );
   }
 
   handleError(error) {
     this.error = error.error.error;
     // this.ngxSmartModalService.setModalData(this.error, 'loginErrorModal');
+  }
+
+  sendMessage(message) {
+    this.Api.sendMessage(this.userDataService.get('id'), this.fromUsernameId, message);
   }
 
 }
