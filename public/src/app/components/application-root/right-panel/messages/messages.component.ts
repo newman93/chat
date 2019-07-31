@@ -3,6 +3,8 @@ import {UserDataService} from "../../../../services/user-data.service";
 import {ApiService} from "../../../../services/api.service";
 import {MessageService} from "../../../../services/messages.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {Message} from "../../../../models/message";
 
 @Component({
   selector: 'app-messages',
@@ -13,7 +15,7 @@ export class MessagesComponent implements OnInit {
   private baseUrl = 'http://localhost:8000/api';
   private fromUsernameId = null;
   public data = null;
-  public messages = null;
+  public messages: Observable<Message[]>;
   private error = null;
 
   constructor(
@@ -66,6 +68,17 @@ export class MessagesComponent implements OnInit {
 
   sendMessage(message) {
     this.Api.sendMessage(this.userDataService.get('id'), this.fromUsernameId, message);
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    this.data.messages.push({ from_username:
+          {
+            id: 2,
+            name: 'aa',
+            surname: 'bb'
+          }, date: dateTime, message: 'test'});
   }
 
 }

@@ -36,7 +36,7 @@
       <textarea type="text" class="form-control" name="message" placeholder="Wpisz wiadomość..." #message></textarea>
     </div>
     <div id="message-button">
-      <button class="btn btn-send" (click)="sendMessage(message)">
+      <button class="btn btn-send" (click)="sendMessage(message.value)">
         <i class="fa fa-arrow-right"></i>
       </button>
     </div>

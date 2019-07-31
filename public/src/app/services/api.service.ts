@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +29,8 @@ export class ApiService {
   }
 
   sendMessage(fromUsernameId, toUsernameId, message) {
-    const params = new URLSearchParams();
-    params.append('message', message);
+      const params = { 'message' : message };
 
-    return this.http.post(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/send`, params).subscribe();
+      return this.http.post(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/send`, params).subscribe();
   }
 }
