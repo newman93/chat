@@ -1,3 +1,91 @@
-<p>
-  settings works!
-</p>
+<div id="edit-settings-label">
+  <div id="edit-settings-label-button">
+    <button class="btn btn-back" type="button" id="back-users"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+  </div>
+  <div  id="edit-settings-label-name">
+    <div id="edit-settings-description">
+      <span>Edytuj</span>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+</div>
+<div id="edit-settings">
+  <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+    <form  method="POST" action="" id="logout">
+      <button class="btn btn-lg btn-primary btn-block" type="button" (click)="logout()">Wyloguj się</button>
+    </form>
+    <h5>Zmień avatar</h5>
+      <form  method="POST" action="" enctype="multipart/form-data" id="change-avatar">
+        <div class="form-group center-avatar">
+        </div>
+        <div class="form-group">
+          <input type="file" name="avatar-file" id="avatar-file"  accept="image/x-png,image/gif,image/jpeg" required>
+          <small id="avatar-hint" class="form-text text-muted">Preferowany rozmiar to 100x100</small>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
+      </form>
+      <h5>Zmień imię i nazwisko</h5>
+      <form  method="POST" action="" id="change-name">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
+            <input type="name" id="name" name="name" class="form-control" placeholder="Imię" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
+            <input type="surname" id="surname" name="surname" class="form-control" placeholder="Nazwisko" required>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
+      </form>
+      <h5>Zmień e-mail</h5>
+      <form  method="POST" action="" id="change-email">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-envelope"></i>
+              </div>
+            </div>
+            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
+      </form>
+      <h5>Zmień hasło</h5>
+      <form  method="POST" action="" id="change-password">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-unlock"></i>
+              </div>
+            </div>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Hasło" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-unlock"></i>
+              </div>
+            </div>
+            <input type="password" id="password2" name="password2" class="form-control" placeholder="Powtórz hasło" required>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
+      </form>
+  </div>
+  <div>

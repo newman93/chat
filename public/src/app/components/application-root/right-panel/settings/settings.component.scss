@@ -1,0 +1,42 @@
+
+#edit-settings-label {
+  color: #303030;
+  font-weight: 600;
+  height: 63px;
+  width: 100%;
+}
+
+#edit-settings-label-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 50px;
+  float: left;
+  height: 100%;
+  display: none;
+}
+
+#edit-settings {
+  margin: 15px;
+  height: calc(100% - 93px);
+  overflow-y: auto;
+  color: #303030;
+}
+
+#edit-settings h5 {
+  padding-top: 10px;
+}
+
+#edit-settings > div:first-of-type {
+  margin: auto;
+}
+
+#edit-settings-label-name {
+  margin-left: 15px;
+  width: calc(100% - 85px);
+  height: 63px;
+  float: left;
+  display: flex;
+  align-items: center;
+}
