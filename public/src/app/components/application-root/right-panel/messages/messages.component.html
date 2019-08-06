@@ -16,13 +16,13 @@
 <div id="message">
   <div *ngIf="this.data">
     <div class="main-message"  *ngFor="let message of this.data.messages">
-      <div class="message-user {{ (message.from_username.id == this.data.id) ? 'sender' : 'guest' }}">
-        <span class="message-user-name">{{ message.from_username.name }} {{ message.from_username.surname }}</span>
+      <div class="message-user {{ (message.fromUsername.id == this.data.id) ? 'sender' : 'guest' }}">
+        <span class="message-user-name">{{ message.fromUsername.name }} {{ message.fromUsername.surname }}</span>
         <span class="message-user-date">
           <small> {{ message.date | date:'dd/MM/yyyy'}} {{ message.date | date:'hh:ss' }}</small>
         </span>
       </div>
-      <div class="message {{ (message.from_username.id == this.data.id) ? 'sender' : 'guest' }}-message">
+      <div class="message {{ (message.fromUsername.id == this.data.id) ? 'sender' : 'guest' }}-message">
         <span>{{ message.message }}</span>
       </div>
     </div>

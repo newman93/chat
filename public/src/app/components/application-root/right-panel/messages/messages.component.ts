@@ -4,7 +4,7 @@ import {ApiService} from "../../../../services/api.service";
 import {MessageService} from "../../../../services/messages.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {Message} from "../../../../models/message";
+import { IMessage, Message } from '../../../../models/message';
 
 @Component({
   selector: 'app-messages',
@@ -15,7 +15,7 @@ export class MessagesComponent implements OnInit {
   private baseUrl = 'http://localhost:8000/api';
   private fromUsernameId = null;
   public data = null;
-  public messages: Observable<Message[]>;
+  public messages: Observable<IMessage[]>;
   private error = null;
 
   constructor(
@@ -56,6 +56,10 @@ export class MessagesComponent implements OnInit {
         {
           value.from_username.avatar = this.userDataService.getAvatar(value.from_username.avatar, value.from_username.username);
           value.to_username.avatar = this.userDataService.getAvatar(value.to_username.avatar, value.to_username.username);
+
+          delete Object.assign(value, {fromUsername: value.from_username }).from_username;
+          delete Object.assign(value, {toUsername: value.to_username }).to_username;
+
           return value;
         }
     );
@@ -69,16 +73,19 @@ export class MessagesComponent implements OnInit {
   sendMessage(message) {
     this.Api.sendMessage(this.userDataService.get('id'), this.fromUsernameId, message);
 
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;
-    this.data.messages.push({ from_username:
-          {
-            id: 2,
-            name: 'aa',
-            surname: 'bb'
-          }, date: dateTime, message: 'test'});
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime: string = date+' '+time;
+    let id: bigint = <bigint><unknown> this.userDataService.get('id');
+
+    this.data.messages.push(new Message(
+        dateTime,
+        id,
+        this.userDataService.get('name'),
+        this.userDataService.get('surname'),
+        message)
+    );
   }
 
 }
