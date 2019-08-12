@@ -6,6 +6,15 @@ import { Injectable } from '@angular/core';
 export class UserDataService {
   private baseUrl = 'http://localhost:8000/api';
 
+  readonly USER_DATA_KEYS = {
+    id: 'id',
+    username: 'username',
+    name: 'name',
+    surname: 'surname',
+    e_mail: 'e_mail',
+    avatar: 'avatar'
+  }
+
   constructor() { }
 
   handle(data) {
@@ -41,4 +50,10 @@ export class UserDataService {
       return avatar;
     }
   }
+
+  changeDataByKeyWithReload(key, value) {
+    localStorage[key] =  value;
+    location.reload();
+  }
+
 }

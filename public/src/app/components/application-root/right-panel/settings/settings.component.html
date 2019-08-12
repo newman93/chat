@@ -16,11 +16,15 @@
       <button class="btn btn-lg btn-primary btn-block" type="button" (click)="logout()">Wyloguj się</button>
     </form>
     <h5>Zmień avatar</h5>
-      <form  method="POST" action="" enctype="multipart/form-data" id="change-avatar">
+      <form  method="POST" ngNativeValidate  (submit)="this.submitAvatar($event)"
+             #changeAvatarForm=ngForm (ngSubmit)="onSubmit()"
+             enctype="multipart/form-data">
         <div class="form-group center-avatar">
+            <img *ngIf="this.imgSrc" id="avatar" [src]="this.imgSrc" class="rounded-circle border-3">
         </div>
         <div class="form-group">
-          <input type="file" name="avatar-file" id="avatar-file"  accept="image/x-png,image/gif,image/jpeg" required>
+          <input type="file" name="avatar-file" id="avatar-file"  accept="image/x-png,image/gif,image/jpeg"
+                 (change)="this.uploadFile($event.target.files)" required>
           <small id="avatar-hint" class="form-text text-muted">Preferowany rozmiar to 100x100</small>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>

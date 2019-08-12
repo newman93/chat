@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => ['CORS', 'api'],
 
 ], function ($router) {
 
@@ -19,6 +19,11 @@ Route::group([
         $file = File::get(storage_path("app/public/img/avatars/$username/$image"));
         return response($file, 200)->header('Content-Type', 'image/jpeg');
     });
+    /* ------------------- MessagesController ------------------- */
     Route::get('messages/from/{fromUsernameId}/to/{toUsernameId}/load', 'MessagesController@loadMessages');
     Route::post('messages/from/{fromUsernameID}/to/{toUsernameId}/send', 'MessagesController@sendMessage');
+    /* ------------------- SettingsController ------------------- */
+    Route::post('settings/user/{user}/change/avatar', 'SettingsController@changeAvatar');
+
+//    Route::model('user', 'App\Models\User');
 });

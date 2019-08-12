@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
     this.Api.register(formData).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
-  );
+    );
   }
 
   uploadFile(files: FileList) {

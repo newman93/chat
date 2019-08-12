@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {UserDataService} from "./user-data.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,10 @@ export class ApiService {
 
   private baseUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {
+  constructor(
+      private http: HttpClient,
+      private userDataService: UserDataService
+      ) {
 
   }
 
@@ -32,5 +36,11 @@ export class ApiService {
       const params = { 'message' : message };
 
       return this.http.post(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/send`, params).subscribe();
+  }
+
+  changeAvatar(data) {
+    const userId = this.userDataService.get('id');
+
+    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/avatar`, data);
   }
 }
