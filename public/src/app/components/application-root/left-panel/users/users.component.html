@@ -1,14 +1,14 @@
 <div id="my-users">
-    <div *ngIf="this.users">
-        <div class="user" *ngFor="let user of this.users" (click)= "getMessages(this.user.id)">
+    <div *ngIf="this.contacts">
+        <div class="user" *ngFor="let user of this.contacts" (click)= "getMessages(this.user.id)">
             <div class="user-avatar">
-                <img [src]="user.contact.avatar" class="rounded-circle border-3">
-                <div class="status {{ user.contact.status == 1? 'online' : 'offline' }}">
+                <img [src]="user.contact?.avatar" class="rounded-circle border-3">
+                <div class="status {{ user.contact?.status == 1? 'online' : 'offline' }}">
                 </div>
             </div>
             <div  class="user-name">
                 <div class="user-description1">
-                    <span>{{ user.contact.name  }} {{ user.contact.surname }}</span>
+                    <span>{{ user.contact?.name  }} {{ user.contact?.surname }}</span>
                 </div>
             </div>
         </div>

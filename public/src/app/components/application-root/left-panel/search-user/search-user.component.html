@@ -1,7 +1,11 @@
 <div id="searchbox">
-  <form method="POST" action="" id="search-contact">
+  <form method="POST"
+        #searchContactF (ngSubmit)="onSubmitSearchContact($event)"
+        id="search-contact">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Szukaj" name="user" required>
+      <input type="text" class="form-control" placeholder="Szukaj"
+             [(ngModel)]="searchContactForm.search"
+             name="search" required>
       <div class="input-group-btn" id="search">
         <button class="btn btn-light" type="submit">
           <i class="fa fa-search"></i>
