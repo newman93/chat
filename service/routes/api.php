@@ -29,5 +29,7 @@ Route::group([
     Route::get('contacts/user/{user}/get', 'ContactsController@getContacts');
     Route::get('contacts/user/{user}/invitations/sent', 'ContactsController@getSentInvitations');
     Route::get('contacts/user/{user}/invitations/waiting', 'ContactsController@getWaitingInvitations');
-//    Route::model('user', 'App\Models\User');
+    Route::post('contacts/user/{user}/contact/search', 'ContactsController@searchContact');
+    Route::post('contacts/user/{user}/user/search', 'ContactsController@searchUser');
+    //    Route::model('user', 'App\Models\User');
 });

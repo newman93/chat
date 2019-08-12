@@ -55,17 +55,22 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/get `);
   }
 
+  searchContactApi(data) {
+    return this.http.post(`${this.baseUrl}/contacts/user/${this.userId}/contact/search`, data);
+  }
+
   getSentInvitations() {
     return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/invitations/sent`);
+  }
+
+  searchUserApi(data) {
+    return this.http.post(`${this.baseUrl}/contacts/user/${this.userId}/user/search`, data);
   }
 
   getWaitingInvitations() {
     return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/invitations/waiting`);
   }
 
-  searchContact(contact) {
-    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contact}/search`);
-  }
 
   addContact(contactId) {
     return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contactId}/add`);

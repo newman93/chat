@@ -44,7 +44,11 @@ export class AddUsersComponent implements OnInit {
   }
 
   searchUser() {
-    this.Api.searchContact(this.searchUserForm.search).subscribe(
+    const formData = new FormData();
+
+    formData.append('user', this.searchUserForm.search);
+
+    this.Api.searchUserApi(formData).subscribe(
         data => this.handleSearchUserResponse(data),
         error => this.handleErrors(error)
     );
