@@ -16,7 +16,6 @@
       <button class="btn btn-lg btn-primary btn-block" type="button" (click)="logout()">Wyloguj się</button>
     </form>
     <h5>Zmień avatar</h5>
-      <!--(submit)="this.changeAvatar($event)"-->
       <form  method="POST" ngNativeValidate
              #changeAvatarF="ngForm" (ngSubmit)="onSubmitChangeAvatar($event)"
              enctype="multipart/form-data">
@@ -31,7 +30,6 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
       </form>
       <h5>Zmień imię i nazwisko</h5>
-      <!--(submit)="this.changeNameAndSurname($event)"-->
       <form  method="POST"  ngNativeValidate
              #changeNameAndSurnameF="ngForm" (ngSubmit)="onSubmitChangeNameAndSurname($event)"
              id="change-name">
@@ -62,7 +60,9 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
       </form>
       <h5>Zmień e-mail</h5>
-      <form  method="POST" action="" id="change-email">
+      <form  method="POST" ngNativeValidate
+             #changeEMailF="ngForm" (ngSubmit)="onSubmitChangeEMail($event)"
+             id="change-email">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -70,7 +70,9 @@
                 <i class="fa fa-envelope"></i>
               </div>
             </div>
-            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+            <input type="email" id="email" name="email"
+                   [(ngModel)]="changeEMailForm.eMail"
+                   class="form-control" placeholder="E-mail" required>
           </div>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>

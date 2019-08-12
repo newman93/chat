@@ -19,6 +19,10 @@ export class SettingsComponent implements OnInit {
     surname: null
   };
 
+  public changeEMailForm = {
+    eMail: null
+  };
+
   public imgSrc = null;
 
   constructor(
@@ -72,8 +76,7 @@ export class SettingsComponent implements OnInit {
     obj[this.userDataService.USER_DATA_KEYS.avatar] = this.changeAvatarForm.avatar_name;
 
     this.Api.changeAvatarApi(formData).subscribe(
-        data =>
-            this.handleResponse(data, obj),
+        data => this.handleResponse(data, obj),
         error => this.handleError(error)
     );
   }
@@ -94,12 +97,29 @@ export class SettingsComponent implements OnInit {
     obj[this.userDataService.USER_DATA_KEYS.surname] = this.changeNameAndSurnameForm.surname;
 
     this.Api.changeNameAndSurnameApi(formData).subscribe(
-        data =>
-            this.handleResponse(data, obj),
+        data => this.handleResponse(data, obj),
         error => this.handleError(error)
     );
   }
 
+  onSubmitChangeEMail(e) {
+    e.preventDefault();
+    this.changeEMail();
+  }
+
+  changeEMail() {
+    const formData = new FormData();
+
+    formData.append('eMail',this.changeEMailForm.eMail);
+
+    let obj = {};
+    obj[this.userDataService.USER_DATA_KEYS.e_mail] = this.changeEMailForm.eMail;
+
+    this.Api.changeEMailApi(formData).subscribe(
+        data => this.handleResponse(data, obj),
+        error => this.handleError(error)
+    )
+  }
 
   handleResponse(data, obj) {
     for (let key in obj) {

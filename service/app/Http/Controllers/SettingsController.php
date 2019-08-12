@@ -20,10 +20,18 @@ class SettingsController extends Controller
     }
 
     public function changeAvatar(User $user, Request $request, SettingsServiceProvider $settingsService) {
-        return  $settingsService->changeAvatar($user, $request);
+         return $settingsService->changeAvatar($user, $request) ?
+             response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
+
     }
 
-    public function changeNameAndSurname(User $user, Request $request, SettingsServiceProvider $settingService) {
-        return $settingService->changeNameAndSurname($user, $request->get('name'), $request->get('surname'));
+    public function changeNameAndSurname(User $user, Request $request, SettingsServiceProvider $settingsService) {
+        return $settingsService->changeNameAndSurname($user, $request->get('name'), $request->get('surname')) ?
+            response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
+    }
+
+    public function changeEMail(User $user, Request $request, SettingsServiceProvider $settingsService) {
+        return $settingsService->changeEMail($user, $request->get('eMail')) ?
+            response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
     }
 }

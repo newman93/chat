@@ -24,6 +24,7 @@ Route::group([
     /* ------------------- SettingsController ------------------- */
     Route::post('settings/user/{user}/change/avatar', 'SettingsController@changeAvatar');
     Route::post('settings/user/{user}/change/nameAndSurname', 'SettingsController@changeNameAndSurname');
+    Route::post('settings/user/{user}/change/email', 'SettingsController@changeEMail');
 
 //    Route::model('user', 'App\Models\User');
 });

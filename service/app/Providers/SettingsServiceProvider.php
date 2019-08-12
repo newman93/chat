@@ -25,6 +25,8 @@ class SettingsServiceProvider
         $user->setAvatar($filename);
 
         $user->save();
+
+        return true;
     }
 
     public function changeNameAndSurname(User $user, String $name, String $surname) {
@@ -32,5 +34,22 @@ class SettingsServiceProvider
         $user->setSurname($surname);
 
         $user->save();
+
+        return true;
+    }
+
+    private function validateEMail(User $user, String $eMail) {
+        return is_null($dbEMail = User::where('e_mail', '=', $eMail)->first());
+    }
+
+    public function changeEMail(User $user, String $eMail) {
+        if ($this->validateEMail($user, $eMail)) {
+            $user->setEMail($eMail);
+            $user->save();
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }
