@@ -43,6 +43,45 @@ html, body {
   float: left;
 }
 
+.user-avatar img {
+  width:65px;
+  height:auto;
+}
+
+#search {
+  padding-left: 10px;
+}
+
+.user-name {
+  width: calc(100% - 65px);
+  padding-left: 5%;
+  float: left;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.contact {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 75px;
+}
+
+.user-avatar {
+  width: 65px;
+  float: left;
+  display: inline-block;
+  position: relative;
+}
+
+.border-2 {
+  border:2px solid grey;
+}
+
+.border-3 {
+  border: 3px solid white;
+}
+
 @media only screen  and (max-width : 767px) {
   .container-fluid {
     background-color: white;

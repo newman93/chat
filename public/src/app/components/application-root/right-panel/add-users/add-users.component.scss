@@ -37,6 +37,30 @@
   margin: auto;
 }
 
-#search {
-  margin-left: 10px;
+.center-avatar {
+  text-align: center;
+}
+
+#avatar {
+  width: 100px;
+  height: 100px;
+}
+
+
+.L-2 {
+  width: calc(100% - 65px - 100px);
+}
+
+.L-1 {
+  width: calc(100% - 65px - 50px);
+}
+
+.invitation-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  float: left;
+  height: 100%;
+  float: left;
 }
