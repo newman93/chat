@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -45,6 +46,22 @@ class SettingsServiceProvider
     public function changeEMail(User $user, String $eMail) {
         if ($this->validateEMail($user, $eMail)) {
             $user->setEMail($eMail);
+            $user->save();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function checkPassword(String $password, String $password2) {
+        return $password == $password2;
+    }
+
+    public function changePassword(User $user, String $password, String $password2) {
+        if ($this->checkPassword($password, $password2)) {
+            $user->setPassword(Hash::make($password));
+
             $user->save();
 
             return true;

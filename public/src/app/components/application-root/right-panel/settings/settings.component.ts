@@ -23,6 +23,11 @@ export class SettingsComponent implements OnInit {
     eMail: null
   };
 
+  public changePasswordForm = {
+    password: null,
+    password2: null
+  };
+
   public imgSrc = null;
 
   constructor(
@@ -118,7 +123,29 @@ export class SettingsComponent implements OnInit {
     this.Api.changeEMailApi(formData).subscribe(
         data => this.handleResponse(data, obj),
         error => this.handleError(error)
-    )
+    );
+  }
+
+  onSubmitChangePassword(e) {
+    e.preventDefault();
+
+    if (this.changePasswordForm.password == this.changePasswordForm.password2) {
+      this.changePassword();
+    } else {
+      console.log('error');
+    }
+  }
+
+  changePassword() {
+    const formData = new FormData();
+
+    formData.append('password', this.changePasswordForm.password);
+    formData.append('password2', this.changePasswordForm.password2);
+
+    this.Api.changePasswordApi(formData).subscribe(
+        data => this.handleResponseChangePassword(),
+        error => this.handleError(error)
+    );
   }
 
   handleResponse(data, obj) {
@@ -132,5 +159,8 @@ export class SettingsComponent implements OnInit {
     console.log(data);
   }
 
+  handleResponseChangePassword() {
+    this.logout();
+  }
 
 }

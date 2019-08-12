@@ -78,7 +78,9 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
       </form>
       <h5>Zmień hasło</h5>
-      <form  method="POST" action="" id="change-password">
+      <form  method="POST"
+             #changePasswordF="ngForm" (ngSubmit)="onSubmitChangePassword($event)"
+             id="change-password">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -86,7 +88,9 @@
                 <i class="fa fa-unlock"></i>
               </div>
             </div>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Hasło" required>
+            <input type="password" id="password" name="password" pattern="[A-Za-z0-9]{1,}"
+                   [(ngModel)]="changePasswordForm.password"
+                   class="form-control" placeholder="Hasło" required>
           </div>
         </div>
         <div class="form-group">
@@ -96,7 +100,9 @@
                 <i class="fa fa-unlock"></i>
               </div>
             </div>
-            <input type="password" id="password2" name="password2" class="form-control" placeholder="Powtórz hasło" required>
+            <input type="password" id="password2" name="password2" pattern="[A-Za-z0-9]{1,}"
+                   [(ngModel)]="changePasswordForm.password2"
+                   class="form-control" placeholder="Powtórz hasło" required>
           </div>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>

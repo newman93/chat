@@ -34,4 +34,9 @@ class SettingsController extends Controller
         return $settingsService->changeEMail($user, $request->get('eMail')) ?
             response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
     }
+
+    public function changePassword(User $user, Request $request, SettingsServiceProvider $settingsService) {
+        return $settingsService->changePassword($user, $request->get('password'), $request->get('password2')) ?
+            response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
+    }
 }

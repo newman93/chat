@@ -55,4 +55,10 @@ export class ApiService {
 
     return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/email`, data);
   }
+
+  changePasswordApi(data) {
+    const userId = this.userDataService.get('id');
+
+    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/password`, data);
+  }
 }
