@@ -1,0 +1,42 @@
+#add-user-label {
+  color: #303030;
+  font-weight: 600;
+  height: 63px;
+  width: 100%;
+}
+
+#add-user-label-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 50px;
+  float: left;
+  height: 100%;
+  display: none;
+}
+
+#add-user-label-name {
+  margin-left: 15px;
+  width: calc(100% - 85px);
+  height: 63px;
+  float: left;
+  display: flex;
+  align-items: center;
+}
+
+#add-user {
+  margin: 15px;
+  height: calc(100% - 93px);
+  overflow-y: auto;
+  color: #303030;
+}
+
+
+#add-user > div:first-of-type {
+  margin: auto;
+}
+
+#search {
+  margin-left: 10px;
+}

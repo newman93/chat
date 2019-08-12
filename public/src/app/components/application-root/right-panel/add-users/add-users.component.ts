@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-users.component.scss']
 })
 export class AddUsersComponent implements OnInit {
+  public SearchUserForm = {
+    search: null
+  };
 
   constructor() { }
 

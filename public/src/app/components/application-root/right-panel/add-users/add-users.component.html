@@ -1,3 +1,97 @@
-<p>
-  add-users works!
-</p>
+<div id="add-user-label">
+  <div id="add-user-label-button">
+    <button class="btn btn-back" type="button" id="back-users"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+  </div>
+  <div  id="add-user-label-name">
+    <div id="add-user-description">
+      <span>Dodaj kontakt</span>
+    </div>
+  </div>
+  <div class="line">
+  </div>
+</div>
+<div id="add-user">
+  <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <form method="POST"
+          #searchUserF="ngForm" (ngSubmit)="onSubmitSearchUser($event)"
+          id="search-user">
+      <div class="input-group">
+        <input type="text" class="form-control" name="user"
+               [(ngModel)]="searchUserForm.search"
+               placeholder="Szukaj" required>
+        <div class="input-group-btn" id="search">
+          <button class="btn btn-primary" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <div id="found-users" *ngIf="this.foundUsers; else lackOfResults">
+      <div class="contact" *ngFor="let user of this.foundUsers">
+        <div class="user-avatar">
+          <img [src]="user.avatar" class="rounded-circle border-2">
+        </div>
+        <div class="user-name L-1">
+          <div class="user-description1">
+            <span>{{ user.name }} {{ user.surname }}</span>
+          </div>
+        </div>
+        <div class="invitation-buttons" *ngIf="user.contact">
+          <button class="btn btn-secondary added-contact" type="button">
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="invitation-buttons" *ngIf="user.invitation">
+          <button class="btn btn-secondary invited-contact" type="button">
+            <i class="fa fa-user-check" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="invitation-buttons" *ngIf="!user.contact && !user.invitation">
+          <button class="btn btn-primary invite" type="button" data-user-id="{{ user.id }}">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="sent-invitations" *ngIf="this.sentInvitations">
+      <h6>Wysłane zaproszenia</h6>
+      <div class="contact" *ngFor="let user of this.setInvitations">
+        <div class="user-avatar">
+          <img [src]="this.user.avatar" class="rounded-circle border-2">
+        </div>
+        <div class="user-name">
+          <div class="user-description1">
+            <span>{{ user.name }} {{ user.surname }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="waiting-invitations" *ngIf="this.waitingInvitations">
+      <h6>Czekające na akceptację</h6>
+      <div class="contact" *ngFor="let user of this.waitingInvitations">
+        <div class="user-avatar">
+          <img [src]="user.avatar" class="rounded-circle border-2">
+        </div>
+        <div class="user-name L-2">
+          <div class="user-description1">
+            <span>{{ user.name }} {{ user.surname }}</span>
+          </div>
+        </div>
+        <div class="invitation-buttons">
+          <button class="btn btn-primary add-contact" type="button" data-user-id="{{ user.id }}">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="invitation-buttons">
+          <button class="btn btn-primary cancel-contact" type="button" data-user-id="{{ user.id }}">
+            <i class="fa fa-user-minus" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #lackOfResults>
+  Brak wyników...
+</ng-template>
