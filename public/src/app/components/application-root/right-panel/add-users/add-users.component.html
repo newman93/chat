@@ -26,7 +26,7 @@
         </div>
       </div>
     </form>
-    <div id="found-users" *ngIf="this.foundUsers; else lackOfResults">
+    <div id="found-users" *ngIf="this.foundUsers?.length > 0; else lackOfResults">
       <div class="contact" *ngFor="let user of this.foundUsers">
         <div class="user-avatar">
           <img [src]="user.avatar" class="rounded-circle border-2">
@@ -36,17 +36,17 @@
             <span>{{ user.name }} {{ user.surname }}</span>
           </div>
         </div>
-        <div class="invitation-buttons" *ngIf="user.contact">
+        <div class="invitation-buttons" *ngIf="user.contacts_contact.length > 0">
           <button class="btn btn-secondary added-contact" type="button">
             <i class="fa fa-users" aria-hidden="true"></i>
           </button>
         </div>
-        <div class="invitation-buttons" *ngIf="user.invitation">
+        <div class="invitation-buttons" *ngIf="user.invitations_contact.length > 0 || user.invitations_username.length > 0">
           <button class="btn btn-secondary invited-contact" type="button">
-            <i class="fa fa-user-check" aria-hidden="true"></i>
+            <i class="fa fa-check" aria-hidden="true"></i>
           </button>
         </div>
-        <div class="invitation-buttons" *ngIf="!user.contact && !user.invitation">
+        <div class="invitation-buttons" *ngIf="!user.invitations_contact.length > 0 && !user.invitations_username.length > 0">
           <button class="btn btn-primary invite" type="button" [attr.data-user-id]="user.id">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
           </button>

@@ -66,8 +66,19 @@ export class AddUsersComponent implements OnInit {
     return data;
   }
 
+  prepareAvatarsFoundUsers(data) {
+    data.map((value, index) =>
+        {
+          value.avatar = this.userDataService.getAvatar(value.avatar, value.username);
+          return value;
+        }
+    );
+
+    return data;
+  }
+
   handleSearchUserResponse(data) {
-    this.foundUsers = this.prepareAvatars(data);
+    this.foundUsers = this.prepareAvatarsFoundUsers(data);
   }
 
   handleSentInvitationsResponse(data) {

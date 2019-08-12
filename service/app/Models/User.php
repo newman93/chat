@@ -220,15 +220,24 @@ class User extends Eloquent
         $this->remember_token = $remember_token;
     }
 
-	public function contacts()
+	public function contactsUsername()
 	{
 		return $this->hasMany(\App\Models\Contact::class, 'username');
 	}
 
-	public function invitations()
+	public function contactsContact() {
+        return $this->hasMany(\App\Models\Contact::class, 'contact');
+    }
+
+	public function invitationsUsername()
 	{
 		return $this->hasMany(\App\Models\Invitation::class, 'username');
 	}
+
+	public function invitationsContact()
+    {
+        return $this->hasMany(\App\Models\Invitation::class, 'contact');
+    }
 
 	public function messages()
 	{
