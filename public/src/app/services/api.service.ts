@@ -38,9 +38,15 @@ export class ApiService {
       return this.http.post(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/send`, params).subscribe();
   }
 
-  changeAvatar(data) {
+  changeAvatarApi(data) {
     const userId = this.userDataService.get('id');
 
     return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/avatar`, data);
+  }
+
+  changeNameAndSurnameApi(data) {
+    const userId = this.userDataService.get('id');
+
+    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/nameAndSurname`, data);
   }
 }

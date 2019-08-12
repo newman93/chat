@@ -3,8 +3,7 @@
 use Illuminate\Http\Request;
 
 Route::group([
-
-    'middleware' => ['CORS', 'api'],
+    'middleware' => 'api',
 
 ], function ($router) {
 
@@ -24,6 +23,7 @@ Route::group([
     Route::post('messages/from/{fromUsernameID}/to/{toUsernameId}/send', 'MessagesController@sendMessage');
     /* ------------------- SettingsController ------------------- */
     Route::post('settings/user/{user}/change/avatar', 'SettingsController@changeAvatar');
+    Route::post('settings/user/{user}/change/nameAndSurname', 'SettingsController@changeNameAndSurname');
 
 //    Route::model('user', 'App\Models\User');
 });

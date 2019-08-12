@@ -16,8 +16,9 @@
       <button class="btn btn-lg btn-primary btn-block" type="button" (click)="logout()">Wyloguj się</button>
     </form>
     <h5>Zmień avatar</h5>
-      <form  method="POST" ngNativeValidate  (submit)="this.submitAvatar($event)"
-             #changeAvatarForm=ngForm (ngSubmit)="onSubmit()"
+      <!--(submit)="this.changeAvatar($event)"-->
+      <form  method="POST" ngNativeValidate
+             #changeAvatarF="ngForm" (ngSubmit)="onSubmitChangeAvatar($event)"
              enctype="multipart/form-data">
         <div class="form-group center-avatar">
             <img *ngIf="this.imgSrc" id="avatar" [src]="this.imgSrc" class="rounded-circle border-3">
@@ -30,7 +31,10 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
       </form>
       <h5>Zmień imię i nazwisko</h5>
-      <form  method="POST" action="" id="change-name">
+      <!--(submit)="this.changeNameAndSurname($event)"-->
+      <form  method="POST"  ngNativeValidate
+             #changeNameAndSurnameF="ngForm" (ngSubmit)="onSubmitChangeNameAndSurname($event)"
+             id="change-name">
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -38,7 +42,9 @@
                 <i class="fa fa-user"></i>
               </div>
             </div>
-            <input type="name" id="name" name="name" class="form-control" placeholder="Imię" required>
+            <input type="name" id="name" name="name"  pattern="[A-Za-z]{1,}"
+                   [(ngModel)]="changeNameAndSurnameForm.name"
+                   class="form-control" placeholder="Imię" required>
           </div>
         </div>
         <div class="form-group">
@@ -48,7 +54,9 @@
                 <i class="fa fa-user"></i>
               </div>
             </div>
-            <input type="surname" id="surname" name="surname" class="form-control" placeholder="Nazwisko" required>
+            <input type="surname" id="surname" name="surname"  pattern="[A-Za-z]{1,}"
+                   [(ngModel)]="changeNameAndSurnameForm.surname"
+                   class="form-control" placeholder="Nazwisko" required>
           </div>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>

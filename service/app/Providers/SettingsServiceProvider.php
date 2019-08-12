@@ -26,4 +26,11 @@ class SettingsServiceProvider
 
         $user->save();
     }
+
+    public function changeNameAndSurname(User $user, String $name, String $surname) {
+        $user->setName($name);
+        $user->setSurname($surname);
+
+        $user->save();
+    }
 }

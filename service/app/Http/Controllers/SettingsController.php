@@ -22,4 +22,8 @@ class SettingsController extends Controller
     public function changeAvatar(User $user, Request $request, SettingsServiceProvider $settingsService) {
         return  $settingsService->changeAvatar($user, $request);
     }
+
+    public function changeNameAndSurname(User $user, Request $request, SettingsServiceProvider $settingService) {
+        return $settingService->changeNameAndSurname($user, $request->get('name'), $request->get('surname'));
+    }
 }
