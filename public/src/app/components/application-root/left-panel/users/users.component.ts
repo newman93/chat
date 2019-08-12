@@ -1,7 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { UserDataService } from '../../../../services/user-data.service';
-import {MessageService} from "../../../../services/messages.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -23,7 +22,7 @@ export class UsersComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    this.Api.getContacts(this.userDataService.get('id')).subscribe(
+    this.Api.getContacts().subscribe(
         data => this.handleResponse(data),
         error => this.handleError(error)
     );

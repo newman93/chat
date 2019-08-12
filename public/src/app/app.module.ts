@@ -44,7 +44,7 @@ import { MessageService } from './services/messages.service';
     EmptyRightPanelComponent,
     SettingsComponent,
     MessagesComponent,
-    AddUsersComponent
+    AddUsersComponent,
   ],
   imports: [
     BrowserModule,

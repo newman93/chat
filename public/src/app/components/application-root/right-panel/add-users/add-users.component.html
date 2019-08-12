@@ -47,7 +47,7 @@
           </button>
         </div>
         <div class="invitation-buttons" *ngIf="!user.contact && !user.invitation">
-          <button class="btn btn-primary invite" type="button" data-user-id="{{ user.id }}">
+          <button class="btn btn-primary invite" type="button" [attr.data-user-id]="user.id">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
           </button>
         </div>
@@ -55,13 +55,13 @@
     </div>
     <div id="sent-invitations" *ngIf="this.sentInvitations">
       <h6>Wysłane zaproszenia</h6>
-      <div class="contact" *ngFor="let user of this.setInvitations">
+      <div class="contact" *ngFor="let user of this.sentInvitations">
         <div class="user-avatar">
-          <img [src]="this.user.avatar" class="rounded-circle border-2">
+          <img [src]="user.contact.avatar" class="rounded-circle border-2">
         </div>
         <div class="user-name">
           <div class="user-description1">
-            <span>{{ user.name }} {{ user.surname }}</span>
+            <span>{{ user.contact.name }} {{ user.contact.surname }}</span>
           </div>
         </div>
       </div>
@@ -70,21 +70,21 @@
       <h6>Czekające na akceptację</h6>
       <div class="contact" *ngFor="let user of this.waitingInvitations">
         <div class="user-avatar">
-          <img [src]="user.avatar" class="rounded-circle border-2">
+          <img [src]="user.username.avatar" class="rounded-circle border-2">
         </div>
         <div class="user-name L-2">
           <div class="user-description1">
-            <span>{{ user.name }} {{ user.surname }}</span>
+            <span>{{ user.username.name }} {{ user.username.surname }}</span>
           </div>
         </div>
         <div class="invitation-buttons">
-          <button class="btn btn-primary add-contact" type="button" data-user-id="{{ user.id }}">
-            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          <button class="btn btn-primary add-contact" type="button" [attr.data-user-id]="user.id">
+            <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         </div>
         <div class="invitation-buttons">
-          <button class="btn btn-primary cancel-contact" type="button" data-user-id="{{ user.id }}">
-            <i class="fa fa-user-minus" aria-hidden="true"></i>
+          <button class="btn btn-primary cancel-contact" type="button" [attr.data-user-id]="user.id">
+            <i class="fa fa-minus" aria-hidden="true"></i>
           </button>
         </div>
       </div>

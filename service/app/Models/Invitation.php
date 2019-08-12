@@ -34,8 +34,13 @@ class Invitation extends Eloquent
 		'contact'
 	];
 
-	public function user()
+	public function username()
 	{
 		return $this->belongsTo(\App\Models\User::class, 'username');
 	}
+
+    public function contact()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'contact');
+    }
 }

@@ -8,6 +8,7 @@ import {UserDataService} from "./user-data.service";
 export class ApiService {
 
   private baseUrl = 'http://localhost:8000/api';
+  private userId =  this.userDataService.get('id');
 
   constructor(
       private http: HttpClient,
@@ -17,19 +18,15 @@ export class ApiService {
   }
 
   register(data) {
-    return this.http.post(`${this.baseUrl}/register`, data);
+      return this.http.post(`${this.baseUrl}/register`, data);
   }
 
   login(data) {
-    return this.http.post(`${this.baseUrl}/login`, data);
-  }
-
-  getContacts(username) {
-      return this.http.get(`${this.baseUrl}/contacts/${ username }`);
+      return this.http.post(`${this.baseUrl}/login`, data);
   }
 
   getMessages(fromUsernameId, toUsernameId) {
-    return this.http.get(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/load`);
+      return this.http.get(`${this.baseUrl}/messages/from/${fromUsernameId}/to/${toUsernameId}/load`);
   }
 
   sendMessage(fromUsernameId, toUsernameId, message) {
@@ -39,26 +36,38 @@ export class ApiService {
   }
 
   changeAvatarApi(data) {
-    const userId = this.userDataService.get('id');
-
-    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/avatar`, data);
+    return this.http.post(`${this.baseUrl}/settings/user/${this.userId}/change/avatar`, data);
   }
 
   changeNameAndSurnameApi(data) {
-    const userId = this.userDataService.get('id');
-
-    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/nameAndSurname`, data);
+    return this.http.post(`${this.baseUrl}/settings/user/${this.userId}/change/nameAndSurname`, data);
   }
 
   changeEMailApi(data) {
-    const userId = this.userDataService.get('id');
-
-    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/email`, data);
+    return this.http.post(`${this.baseUrl}/settings/user/${this.userId}/change/email`, data);
   }
 
   changePasswordApi(data) {
-    const userId = this.userDataService.get('id');
+    return this.http.post(`${this.baseUrl}/settings/user/${this.userId}/change/password`, data);
+  }
 
-    return this.http.post(`${this.baseUrl}/settings/user/${userId}/change/password`, data);
+  getContacts() {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/get `);
+  }
+
+  getSentInvitations() {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/invitations/sent`);
+  }
+
+  getWaitingInvitations() {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/invitations/waiting`);
+  }
+
+  searchContact(contact) {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contact}/search`);
+  }
+
+  addContact(contactId) {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contactId}/add`);
   }
 }

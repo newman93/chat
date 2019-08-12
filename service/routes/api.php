@@ -12,7 +12,6 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-    Route::get('contacts/{usernameId}', 'ContactsController@contacts');
     Route::get('images/{username}/{image}', function ($username, $image)
     {
         $file = File::get(storage_path("app/public/img/avatars/$username/$image"));
@@ -26,6 +25,9 @@ Route::group([
     Route::post('settings/user/{user}/change/nameAndSurname', 'SettingsController@changeNameAndSurname');
     Route::post('settings/user/{user}/change/email', 'SettingsController@changeEMail');
     Route::post('settings/user/{user}/change/password', 'SettingsController@changePassword');
-
+    /* ------------------- ContactsController ------------------- */
+    Route::get('contacts/user/{user}/get', 'ContactsController@getContacts');
+    Route::get('contacts/user/{user}/invitations/sent', 'ContactsController@getSentInvitations');
+    Route::get('contacts/user/{user}/invitations/waiting', 'ContactsController@getWaitingInvitations');
 //    Route::model('user', 'App\Models\User');
 });
