@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../../../services/api.service";
 import {UserDataService} from "../../../../services/user-data.service";
 import {Observable} from "rxjs";
-import {IContact} from "../../../../models/icontact";
+import {IUser} from "../../../../models/iuser";
 
 @Component({
   selector: 'app-search-user',
@@ -10,7 +10,7 @@ import {IContact} from "../../../../models/icontact";
   styleUrls: ['./search-user.component.scss']
 })
 export class SearchUserComponent implements OnInit {
-  public contacts: Observable<IContact[]>;
+  public contacts: Observable<IUser[]>;
   public searchContactForm = {
     search: null,
   };
