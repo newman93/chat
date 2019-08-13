@@ -11,7 +11,13 @@ use Illuminate\Support\ServiceProvider;
 class ContactsServiceProvider {
 
     public function getContacts(User $user) {
-        return Contact::with('contact')->where('username', '=', $user->getId())->get();
+//        return Contact::with('contact')->where('username', '=', $user->getId())->get();
+            return DB::table('users')
+                        ->join('contacts', 'contacts.contact', 'users.id' )
+                        ->where('contacts.username', '=', $user->getId())
+                        ->select('users.id', 'users.username', 'users.e_mail', 'users.name', 'users.surname')
+                        ->addSelect('users.avatar', 'users.function', 'users.active')
+                        ->get();
     }
 
     public function getSentInvitations(User $user) {
@@ -22,36 +28,36 @@ class ContactsServiceProvider {
         return Invitation::with('username', 'contact')->where('contact', '=', $user->getId())->get();
     }
 
-    public function searchContact(User $user, string $contact) {
-        $parsedSearch = explode(" ", $contact);
-
-        if (count($parsedSearch) > 1) {
-            return Contact::with(['contact' => function ($query) use ($parsedSearch) {
-                        return $query->where(function ($subQuery) use ($parsedSearch) {
-                            return $subQuery->where('name', '=', $parsedSearch[0])
-                                        ->where('surname', '=', $parsedSearch[1]);
-                        })
-                        ->orWhere(function ($subQuery) use ($parsedSearch) {
-                            return $subQuery->where('name', '=', $parsedSearch[1])
-                                        ->where('surname', '=', $parsedSearch[0]);
-                        });
-                    }])
-                    ->where('username', '=', $user->getId())
-                    ->has('contact')
-                    ->get();
-        } else {
-            return Contact::with(['contact' => function ($query) use ($parsedSearch) {
-                return $query->where(function ($subQuery) use ($parsedSearch) {
-                    return $subQuery->where('name', '=', $parsedSearch[0]);
-                    })
-                    ->orWhere(function ($subQuery) use ($parsedSearch) {
-                        return $subQuery->where('surname', '=', $parsedSearch[0]);
-                    });
-                 }])
-                ->where('username', '=', $user->getId())
-                ->get();
-        }
-    }
+//    public function searchContact(User $user, string $contact) {
+//        $parsedSearch = explode(" ", $contact);
+//
+//        if (count($parsedSearch) > 1) {
+//            return Contact::with(['contact' => function ($query) use ($parsedSearch) {
+//                        return $query->where(function ($subQuery) use ($parsedSearch) {
+//                            return $subQuery->where('name', '=', $parsedSearch[0])
+//                                        ->where('surname', '=', $parsedSearch[1]);
+//                        })
+//                        ->orWhere(function ($subQuery) use ($parsedSearch) {
+//                            return $subQuery->where('name', '=', $parsedSearch[1])
+//                                        ->where('surname', '=', $parsedSearch[0]);
+//                        });
+//                    }])
+//                    ->where('username', '=', $user->getId())
+//                    ->has('contact')
+//                    ->get();
+//        } else {
+//            return Contact::with(['contact' => function ($query) use ($parsedSearch) {
+//                return $query->where(function ($subQuery) use ($parsedSearch) {
+//                    return $subQuery->where('name', '=', $parsedSearch[0]);
+//                    })
+//                    ->orWhere(function ($subQuery) use ($parsedSearch) {
+//                        return $subQuery->where('surname', '=', $parsedSearch[0]);
+//                    });
+//                 }])
+//                ->where('username', '=', $user->getId())
+//                ->get();
+//        }
+//    }
 
 //    //todo: to fix
 //    public function searchContact(User $user, string $contact) {
@@ -125,6 +131,40 @@ class ContactsServiceProvider {
                     });
 
                 })
+                ->get();
+        }
+    }
+
+    public function searchContact(User $user, string $search) {
+        $parsedSearch = explode(" ", $search);
+
+        if (count($parsedSearch) > 1) {
+            return DB::table('users')
+                ->join('contacts', 'contacts.contact', 'users.id')
+                ->where('contacts.username', '=', $user->getId())
+                ->where(function ($query) use ($parsedSearch) {
+                    return $query->where(function ($subQuery) use ($parsedSearch) {
+                        $subQuery->where('users.name', '=', $parsedSearch[0])
+                            ->where('users.surname', '=', $parsedSearch[1]);
+                    })
+                    ->orWhere(function ($subQuery) use ($parsedSearch) {
+                        $subQuery->where('users.name', '=', $parsedSearch[1])
+                            ->where('users.surname', '=', $parsedSearch[0]);
+                    });
+                })
+                ->select('users.id', 'users.username', 'users.e_mail', 'users.name', 'users.surname')
+                ->addSelect('users.avatar', 'users.function', 'users.active')
+                ->get();
+        } else {
+            return DB::table('users')
+                ->join('contacts', 'contacts.contact', 'users.id')
+                ->where('contacts.username', '=', $user->getId())
+                ->where(function ($query) use ($parsedSearch) {
+                    return $query->where('users.name', '=', $parsedSearch[0])
+                                ->orWhere('users.surname', '=', $parsedSearch[0]);
+                })
+                ->select('users.id', 'users.username', 'users.e_mail', 'users.name', 'users.surname')
+                ->addSelect('users.avatar', 'users.function', 'users.active')
                 ->get();
         }
     }
