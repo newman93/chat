@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use App\Models\User;
 use App\Providers\ContactsServiceProvider;
 use Illuminate\Http\Request;
@@ -32,5 +31,20 @@ class ContactsController extends Controller
 
     public function searchUser(User $user, Request $request, ContactsServiceProvider $contactsService) {
         return response($contactsService->searchUser($user, $request->get('user')), 200);
+    }
+
+    public function inviteContact(User $user, User $contact, ContactsServiceProvider $contactsService) {
+        return $contactsService->inviteContact($user, $contact) ?
+            response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
+    }
+
+    public function addContact(User $user, User $contact, ContactsServiceProvider $contactsService) {
+        return $contactsService->addContact($user, $contact) ?
+            response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
+    }
+
+    public function cancelContact(User $user, User $contact, ContactsServiceProvider $contactsService) {
+        return $contactsService->cancelContact($user, $contact) ?
+            response()->json(['success' => 'success'], 200) : response()->json(['error' => 'error'], 400);
     }
 }

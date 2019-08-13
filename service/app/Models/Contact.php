@@ -34,6 +34,54 @@ class Contact extends Eloquent
 		'contact'
 	];
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUsername(): int
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param int $username
+     */
+    public function setUsername(int $username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return int
+     */
+    public function getContact(): int
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param int $contact
+     */
+    public function setContact(int $contact): void
+    {
+        $this->contact = $contact;
+    }
+
 	public function username()
 	{
 		return $this->belongsTo(\App\Models\User::class, 'username');

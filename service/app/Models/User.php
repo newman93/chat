@@ -239,7 +239,7 @@ class User extends Eloquent
         return $this->hasMany(\App\Models\Invitation::class, 'contact');
     }
 
-	public function messages()
+	public function MessageToUsername()
 	{
 		return $this->hasMany(\App\Models\Message::class, 'to_username');
 	}

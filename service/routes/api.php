@@ -19,7 +19,7 @@ Route::group([
     });
     /* ------------------- MessagesController ------------------- */
     Route::get('messages/from/{fromUsernameId}/to/{toUsernameId}/load', 'MessagesController@loadMessages');
-    Route::post('messages/from/{fromUsernameID}/to/{toUsernameId}/send', 'MessagesController@sendMessage');
+    Route::post('messages/from/{fromUsernameId}/to/{toUsernameId}/send', 'MessagesController@sendMessage');
     /* ------------------- SettingsController ------------------- */
     Route::post('settings/user/{user}/change/avatar', 'SettingsController@changeAvatar');
     Route::post('settings/user/{user}/change/nameAndSurname', 'SettingsController@changeNameAndSurname');
@@ -31,5 +31,7 @@ Route::group([
     Route::get('contacts/user/{user}/invitations/waiting', 'ContactsController@getWaitingInvitations');
     Route::post('contacts/user/{user}/contact/search', 'ContactsController@searchContact');
     Route::post('contacts/user/{user}/user/search', 'ContactsController@searchUser');
-    //    Route::model('user', 'App\Models\User');
+    Route::get('contacts/user/{user}/contact/{contact}/invite', 'ContactsController@inviteContact');
+    Route::get('contacts/user/{user}/contact/{contact}/add', 'ContactsController@addContact');
+    Route::get('contacts/user/{user}/contact/{contact}/cancel', 'ContactsController@cancelContact');
 });

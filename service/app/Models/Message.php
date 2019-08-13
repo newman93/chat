@@ -45,6 +45,102 @@ class Message extends Eloquent
 		'date'
 	];
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFromUsername(): int
+    {
+        return $this->from_username;
+    }
+
+    /**
+     * @param int $from_username
+     */
+    public function setFromUsername(int $from_username): void
+    {
+        $this->from_username = $from_username;
+    }
+
+    /**
+     * @return int
+     */
+    public function getToUsername(): int
+    {
+        return $this->to_username;
+    }
+
+    /**
+     * @param int $to_username
+     */
+    public function setToUsername(int $to_username): void
+    {
+        $this->to_username = $to_username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return int
+     */
+    public function getToRead(): int
+    {
+        return $this->to_read;
+    }
+
+    /**
+     * @param int $to_read
+     */
+    public function setToRead(int $to_read): void
+    {
+        $this->to_read = $to_read;
+    }
+
+    /**
+     * @return \Carbon\Carbon
+     */
+    public function getDate(): \Carbon\Carbon
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \Carbon\Carbon $date
+     */
+    public function setDate(\Carbon\Carbon $date): void
+    {
+        $this->date = $date;
+    }
+
 	public function fromUsername()
 	{
 		return $this->belongsTo(\App\Models\User::class, 'from_username');

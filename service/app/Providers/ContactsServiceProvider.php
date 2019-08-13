@@ -11,13 +11,12 @@ use Illuminate\Support\ServiceProvider;
 class ContactsServiceProvider {
 
     public function getContacts(User $user) {
-//        return Contact::with('contact')->where('username', '=', $user->getId())->get();
-            return DB::table('users')
-                        ->join('contacts', 'contacts.contact', 'users.id' )
-                        ->where('contacts.username', '=', $user->getId())
-                        ->select('users.id', 'users.username', 'users.e_mail', 'users.name', 'users.surname')
-                        ->addSelect('users.avatar', 'users.function', 'users.active')
-                        ->get();
+        return DB::table('users')
+                    ->join('contacts', 'contacts.contact', 'users.id' )
+                    ->where('contacts.username', '=', $user->getId())
+                    ->select('users.id', 'users.username', 'users.e_mail', 'users.name', 'users.surname')
+                    ->addSelect('users.avatar', 'users.function', 'users.active')
+                    ->get();
     }
 
     public function getSentInvitations(User $user) {
@@ -110,5 +109,40 @@ class ContactsServiceProvider {
                 ->addSelect('users.avatar', 'users.function', 'users.active')
                 ->get();
         }
+    }
+
+    public function inviteContact(User $user, User $contact) {
+        $invitation = new Invitation();
+        $invitation->setUsername($user->getId());
+        $invitation->setContact($contact->getId());
+
+        $invitation->save();
+
+        return true;
+    }
+
+    public function addContact(User $user, User $contact) {
+        Invitation::where('username', '=', $contact->getId())
+                    ->where('contact', '=', $user->getId())
+                        ->delete();
+
+        $contactRelation1 = new Contact();
+        $contactRelation1->setContact($user->getId());
+        $contactRelation1->setUsername($contact->getId());
+        $contactRelation1->save();
+
+        $contactRelation2 = new Contact();
+        $contactRelation2->setContact($contact->getId());
+        $contactRelation2->setUsername($user->getId());
+        $contactRelation2->save();
+
+        return true;
+    }
+
+    public function cancelContact(User $user, User $contact) {
+        Invitation::where('username', '=', $contact->getId())
+                    ->where('contact', '=', $user->getId())
+                        ->delete();
+        return true;
     }
 }

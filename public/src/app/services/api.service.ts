@@ -71,8 +71,15 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/invitations/waiting`);
   }
 
+  inviteContactApi(contactId) {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contactId}/invite`);
+  }
 
-  addContact(contactId) {
+  addContactApi(contactId) {
     return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contactId}/add`);
+  }
+
+  cancelContactApi(contactId) {
+    return this.http.get(`${this.baseUrl}/contacts/user/${this.userId}/contact/${contactId}/cancel`);
   }
 }

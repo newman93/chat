@@ -89,8 +89,32 @@ export class AddUsersComponent implements OnInit {
     this.waitingInvitations = this.prepareAvatars(data);
   }
 
+  inviteContact(userId) {
+    this.Api.inviteContactApi(userId).subscribe(
+      data => this.handleResponse(data),
+      error => this.handleErrors(error)
+    );
+  }
+
+  addContact(userId) {
+    this.Api.addContactApi(userId).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleErrors(error)
+    );
+  }
+
+  cancelContact(userId) {
+    this.Api.cancelContactApi(userId).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleErrors(error)
+    );
+  }
+
+  handleResponse(data) {
+   console.log(data);
+  }
+
   handleErrors(error) {
     console.log(error);
   }
-
 }
