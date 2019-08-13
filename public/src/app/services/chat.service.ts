@@ -18,16 +18,7 @@ export class ChatService {
       private wsService: WebsocketService
   ) {
         this.loginSocket = <Subject<ILoginSocket>>Subject.create();
-
-      // this.loginSocket = <Subject<ILoginSocket>>wsService.connect(CHAT_URL).map(
-      //     (response: MessageEvent): ILoginSocket => {
-      //         let data = JSON.parse(response.data);
-      //           console.log('login');
-      //         if (data.type == LOGIN) {
-      //             return data;
-      //         }
-      //     }
-      // );
+        this.messagesSocket = <Subject<IMessageSocket>>Subject.create();
   }
 
   public  getConnection() {
@@ -57,9 +48,5 @@ export class ChatService {
               resolve();
           });
       });
-  }
-
-  public getLoginSocket() {
-      return this.loginSocket;
   }
 }

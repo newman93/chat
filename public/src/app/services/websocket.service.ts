@@ -24,17 +24,6 @@ export class WebsocketService {
       });
   }
 
-
-  // public connect(url): Rx.Subject<MessageEvent> {
-  //   if (!this.subject) {
-  //     this.subject = this.create(url);
-  //     console.log('Successfully connected: ', url);
-  //   }
-  //   console.log(this.subject);
-  //
-  //   return this.subject;
-  // }
-  //
   public getSubject(): Rx.Subject<MessageEvent> {
     return this.subject;
   }
