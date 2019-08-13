@@ -17,8 +17,9 @@ export class SearchUserComponent implements OnInit {
 
   constructor(
       private Api: ApiService,
-      private userDataService: UserDataService
-  ) { }
+      private userDataService: UserDataService,
+  ) {
+  }
 
   ngOnInit() {
     this.getContacts();

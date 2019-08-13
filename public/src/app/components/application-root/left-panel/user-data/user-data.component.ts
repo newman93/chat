@@ -17,7 +17,10 @@ export class UserDataComponent implements OnInit {
 
   private baseUrl = 'http://127.0.0.1:8000/api';
 
-  constructor(private userDataService: UserDataService) { }
+  constructor(
+      private userDataService: UserDataService,
+  ){
+  }
 
   ngOnInit() {
     this.userData.username = this.userDataService.get('id');

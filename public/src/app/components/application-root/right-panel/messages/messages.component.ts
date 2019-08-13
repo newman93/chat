@@ -1,11 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserDataService} from "../../../../services/user-data.service";
 import {ApiService} from "../../../../services/api.service";
-import {MessageService} from "../../../../services/messages.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import { IMessage, Message } from '../../../../models/message';
-import {ChatService} from "../../../../services/chat.service";
+
 
 @Component({
   selector: 'app-messages',
@@ -13,29 +12,26 @@ import {ChatService} from "../../../../services/chat.service";
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
-  private baseUrl = 'http://localhost:8000/api';
   private fromUsernameId = null;
   public data = null;
   public messages: Observable<IMessage[]>;
   private error = null;
+  public message: string;
 
   constructor(
       private userDataService: UserDataService,
       private Api: ApiService,
       private activatedRoute: ActivatedRoute,
       private router: Router,
-      private chatService: ChatService
-      // private messageService: MessageService
   ) {
-    // this.messageService.listen().subscribe((m:any) => {
-    //     console.log(2);
-    //     this.getMessages(m);
-    // });
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       // do your task for before route
-
       return false;
-    }
+    };
+    // this.chatService.messagesSocket.subscribe(
+    //     msg => {
+    //         console.log(msg);
+    // });
   }
 
   ngOnInit() {
@@ -72,24 +68,27 @@ export class MessagesComponent implements OnInit {
     // this.ngxSmartModalService.setModalData(this.error, 'loginErrorModal');
   }
 
-  sendMessage(message) {
-    this.Api.sendMessage(this.userDataService.get('id'), this.fromUsernameId, message);
+  sendMessage() {
+    this.Api.sendMessage(this.userDataService.get('id'), this.fromUsernameId, this.message);
 
     let today = new Date();
-    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     let dateTime: string = date+' '+time;
     let id: bigint = <bigint><unknown> this.userDataService.get('id');
+    let name = this.userDataService.get('name');
+    let surname = this.userDataService.get('surname');
+
 
     this.data.messages.push(new Message(
-        dateTime,
-        id,
-        this.userDataService.get('name'),
-        this.userDataService.get('surname'),
-        message)
-    );
+        dateTime, id, name, surname, this.message
+        ));
 
-    this.chatService.messages.next({ type: 'login'});
+    // this.chatService.messagesSocket.next(new MessageSocket(
+    //     id, name, surname, this.fromUsernameId, this.message, dateTime
+    // ));
+
+    this.message = '';
   }
 
 }

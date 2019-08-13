@@ -10,34 +10,57 @@ export class WebsocketService {
 
   private subject: Rx.Subject<MessageEvent>;
 
-  public connect(url): Rx.Subject<MessageEvent> {
-    if (!this.subject) {
-      this.subject = this.create(url);
-      console.log('Successfully connected: ', url);
-    }
+  public connect(url) {
+    let that = this;
+    return new Promise(function(resolve, reject) {
+      if (!that.subject) {
+          let ws = new WebSocket(url);
+          ws.onopen = function()  {
+            resolve(that.create(ws));
+          }
+        } else {
+          resolve();
+        }
+      });
+  }
 
+
+  // public connect(url): Rx.Subject<MessageEvent> {
+  //   if (!this.subject) {
+  //     this.subject = this.create(url);
+  //     console.log('Successfully connected: ', url);
+  //   }
+  //   console.log(this.subject);
+  //
+  //   return this.subject;
+  // }
+  //
+  public getSubject(): Rx.Subject<MessageEvent> {
     return this.subject;
   }
 
-  private create(url): Rx.Subject<MessageEvent> {
-    let ws = new WebSocket(url);
-
+  private create(ws): Rx.Subject<MessageEvent> {
     let observable = Rx.Observable.create((obs: Rx.Observer<MessageEvent>) => {
       ws.onmessage = obs.next.bind(obs);
       ws.onerror = obs.error.bind(obs);
       ws.onclose = obs.complete.bind(obs);
 
-      return ws.close.bind(obs);
+      return ws.close.bind(ws);
     });
 
     let observer = {
       next: (data: Object) => {
+        console.log('next');
         if (ws.readyState === WebSocket.OPEN) {
+          console.log('next2');
+
           ws.send(JSON.stringify(data));
         }
       }
     };
 
-    return Rx.Subject.create(observer, observable);
+    this.subject =  Rx.Subject.create(observer, observable);
+
+    return this.subject;
   }
 }

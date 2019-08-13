@@ -33,10 +33,11 @@
   </div>
   <form action="" method="POST" id="send-message">
     <div id="text-message">
-      <textarea type="text" class="form-control" name="message" placeholder="Wpisz wiadomość..." #message></textarea>
+      <textarea type="text" class="form-control" name="message" placeholder="Wpisz wiadomość..." [(ngModel)]='message'>
+      </textarea>
     </div>
     <div id="message-button">
-      <button class="btn btn-send" (click)="sendMessage(message.value)">
+      <button class="btn btn-send" (click)="sendMessage()">
         <i class="fa fa-arrow-right"></i>
       </button>
     </div>

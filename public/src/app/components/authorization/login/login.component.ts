@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
       private router: Router,
       private Auth: AuthService,
       private UserData: UserDataService,
-      private ngxSmartModalService: NgxSmartModalService) {
+      private ngxSmartModalService: NgxSmartModalService
+  ){
       }
 
   onSubmit() {
