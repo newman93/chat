@@ -3,10 +3,10 @@
     <div id="users" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <div id="users-content">
         <app-user-data></app-user-data>
-        <app-search-user #contacts></app-search-user>
-        <app-users [contacts]="contacts.contacts"></app-users>
+        <app-search-user #searchUser></app-search-user>
+        <app-users [contacts]="searchUser.contacts"></app-users>
       </div>
-      <app-users-menu></app-users-menu>
+      <app-users-menu [searchUser]="searchUser"></app-users-menu>
     </div>
     <div id="messages" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 p-0 m-0">
       <router-outlet></router-outlet>

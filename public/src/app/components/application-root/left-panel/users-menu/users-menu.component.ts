@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+
+import {SearchUserComponent} from "../search-user/search-user.component";
 
 @Component({
   selector: 'app-users-menu',
@@ -7,6 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./users-menu.component.scss']
 })
 export class UsersMenuComponent implements OnInit {
+  @Input() searchUser: SearchUserComponent;
 
   constructor(
       private router: Router
@@ -24,6 +27,6 @@ export class UsersMenuComponent implements OnInit {
   }
 
   getContacts() {
-    this.router.navigate(['/application']);
+    this.searchUser.getContacts();
   }
 }

@@ -21,6 +21,10 @@ export class SearchUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getContacts();
+  }
+
+  getContacts() {
     this.Api.getContacts().subscribe(
         data => this.handleResponse(data),
         error => this.handleError(error)
