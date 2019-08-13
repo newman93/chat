@@ -27,6 +27,8 @@ import { SettingsComponent } from './components/application-root/right-panel/set
 import { MessagesComponent } from './components/application-root/right-panel/messages/messages.component';
 import { AddUsersComponent } from './components/application-root/right-panel/add-users/add-users.component';
 import { MessageService } from './services/messages.service';
+import {WebsocketService} from "./services/websocket.service";
+import {ChatService} from "./services/chat.service";
 
 @NgModule({
   declarations: [
@@ -56,7 +58,7 @@ import { MessageService } from './services/messages.service';
   ],
   providers: [
       ApiService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
-      UserDataService, NgxSmartModalService, MessageService
+      UserDataService, NgxSmartModalService, MessageService, WebsocketService, ChatService
   ],
   bootstrap: [AppComponent]
 })

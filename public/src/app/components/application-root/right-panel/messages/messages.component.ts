@@ -5,6 +5,7 @@ import {MessageService} from "../../../../services/messages.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import { IMessage, Message } from '../../../../models/message';
+import {ChatService} from "../../../../services/chat.service";
 
 @Component({
   selector: 'app-messages',
@@ -22,7 +23,8 @@ export class MessagesComponent implements OnInit {
       private userDataService: UserDataService,
       private Api: ApiService,
       private activatedRoute: ActivatedRoute,
-      private router: Router
+      private router: Router,
+      private chatService: ChatService
       // private messageService: MessageService
   ) {
     // this.messageService.listen().subscribe((m:any) => {
@@ -86,6 +88,8 @@ export class MessagesComponent implements OnInit {
         this.userDataService.get('surname'),
         message)
     );
+
+    this.chatService.messages.next({ type: 'login'});
   }
 
 }
