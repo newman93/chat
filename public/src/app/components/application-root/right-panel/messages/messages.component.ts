@@ -47,12 +47,12 @@ export class MessagesComponent implements OnInit {
 
   handleResponse(data) {
     this.data = data;
-    this.data.avatar = this.userDataService.getAvatar(data.avatar, data.username);
+    this.data.avatar = this.Api.getAvatarApi(data.username, data.avatar);
 
     this.data.messages.map((value, index) =>
         {
-          value.from_username.avatar = this.userDataService.getAvatar(value.from_username.avatar, value.from_username.username);
-          value.to_username.avatar = this.userDataService.getAvatar(value.to_username.avatar, value.to_username.username);
+          value.from_username.avatar = this.Api.getAvatarApi(value.from_username.username, value.from_username.avatar, );
+          value.to_username.avatar = this.Api.getAvatarApi(value.to_username.username, value.to_username.avatar);
 
           delete Object.assign(value, {fromUsername: value.from_username }).from_username;
           delete Object.assign(value, {toUsername: value.to_username }).to_username;

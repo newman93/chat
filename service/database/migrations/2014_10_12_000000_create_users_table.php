@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('function');
             $table->integer('active')->default(1);
-            $table->rememberToken();
+            $table->string('remember_token', 500)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });

@@ -16,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'permissionDenied']]);
     }
 
     /**
@@ -94,5 +94,9 @@ class AuthController extends Controller
             'avatar' => auth()->user()->avatar,
             'e_mail' => auth()->user()->e_mail
         ]);
+    }
+
+    public function wrongToken() {
+        return response()->json(['error' => 'Błędny token'], 400);
     }
 }

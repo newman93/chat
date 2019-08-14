@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
-  private baseUrl = 'http://localhost:8000/api';
-
   readonly USER_DATA_KEYS = {
     id: 'id',
     username: 'username',
@@ -15,7 +14,9 @@ export class UserDataService {
     avatar: 'avatar'
   }
 
-  constructor() { }
+  constructor(
+      private Api: ApiService
+  ) { }
 
   handle(data) {
     this.set(data);
@@ -43,12 +44,8 @@ export class UserDataService {
     return localStorage.getItem(key);
   }
 
-  getAvatar(avatar, username) {
-    if (!(avatar.indexOf('/') > -1)) {
-      return `${this.baseUrl}/images/${username}/${avatar}`;
-    } else {
-      return avatar;
-    }
+  getAvatar() {
+    return this.Api.getAvatarApi(this.get('username'), this.get('avatar'));
   }
 
   changeDataByKeyWithReload(key, value) {
