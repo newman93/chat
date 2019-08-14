@@ -28,7 +28,7 @@ class Chat implements MessageComponentInterface {
 
                                 foreach ($this->clientsMap as $key=>$value) {
                                    $this->clients[$this->clientsMap[$key]]->send(
-                                       json_encode(['type' => 'login', 'fromUsername' => $data['fromUsername']])
+                                       json_encode($data)
                                    );
                                 }
                            }
@@ -84,14 +84,13 @@ class Chat implements MessageComponentInterface {
                        break;
          */
           case "message":
-                      $toClient = isset($this->clientsMap[$data['toUsername']])? $this->clients[$this->clientsMap[$data['toUsername']]] : null;
-                      if($toClient != null) {
-                                   echo "lol";
-                        $toClient->send(json_encode(['type' => 'message', 'message'=> $data['message'], 'fromUsername' => $data['username'],
-                                'fromName' => $data['name'], 'fromSurname' => $data['surname'],'time' => $data['time'], 'date' => $data['date']]));
-                      } /*else {
-                        $from->send(json_encode(['type' => "access", "access" => "false", "username" => array_search($from->resourceId,$this->clientsMap)]));
-                      }*/
+                      $toClient = isset($this->clientsMap[$data['toUsername']])?
+                          $this->clients[$this->clientsMap[$data['toUsername']]] : null;
+
+                      if (!is_null($toClient)) {
+                        $toClient->send(json_encode([$data]));
+                      }
+
                       break;
           }
     }

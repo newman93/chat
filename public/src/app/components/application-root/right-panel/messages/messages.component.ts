@@ -4,6 +4,8 @@ import {ApiService} from "../../../../services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import { IMessage, Message } from '../../../../models/message';
+import {MessageSocket} from "../../../../models/socket/imessage-socket";
+import {ChatService} from "../../../../services/chat.service";
 
 
 @Component({
@@ -23,15 +25,12 @@ export class MessagesComponent implements OnInit {
       private Api: ApiService,
       private activatedRoute: ActivatedRoute,
       private router: Router,
+      private  chatService: ChatService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       // do your task for before route
       return false;
     };
-    // this.chatService.messagesSocket.subscribe(
-    //     msg => {
-    //         console.log(msg);
-    // });
   }
 
   ngOnInit() {
@@ -84,9 +83,9 @@ export class MessagesComponent implements OnInit {
         dateTime, id, name, surname, this.message
         ));
 
-    // this.chatService.messagesSocket.next(new MessageSocket(
-    //     id, name, surname, this.fromUsernameId, this.message, dateTime
-    // ));
+    this.chatService.subjectSocket.next(<unknown>new MessageSocket(
+        id, name, surname, this.fromUsernameId, this.message, dateTime
+    ) as MessageEvent);
 
     this.message = '';
   }

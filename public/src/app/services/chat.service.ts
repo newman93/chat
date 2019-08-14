@@ -13,12 +13,18 @@ const CHAT_URL = 'ws://localhost:8080';
 export class ChatService {
   public messagesSocket: Subject<IMessageSocket>;
   public loginSocket: Subject<ILoginSocket>;
+  public subjectSocket: Subject<MessageEvent>;
+  public loginObservable: Subject<ILoginSocket>;
+  public messageObservable: Subject<IMessageSocket>;
 
   constructor(
       private wsService: WebsocketService
   ) {
         this.loginSocket = <Subject<ILoginSocket>>Subject.create();
         this.messagesSocket = <Subject<IMessageSocket>>Subject.create();
+        this.subjectSocket = <Subject<MessageEvent>>Subject.create();
+        this.loginObservable =  new Subject<ILoginSocket>();
+        this.messageObservable = new Subject<IMessageSocket>();
   }
 
   public  getConnection() {
@@ -26,27 +32,28 @@ export class ChatService {
 
       return new Promise(function (resolve, reject) {
           return that.wsService.connect(CHAT_URL).then(function () {
-              that.messagesSocket = <Subject<IMessageSocket>>that.wsService.getSubject().map(
-                  (response: MessageEvent): IMessageSocket => {
-                      let data = JSON.parse(response.data);
-                      console.log('message');
-                      if (data.type == MESSAGE) {
-                          return data;
-                      }
-                  }
-              );
+              // that.messagesSocket = <Subject<IMessageSocket>><unknown>that.wsService.getSubject();
+              // .map(
+              //     (response: MessageEvent): IMessageSocket => {
+              //         let data = JSON.parse(response.data);
+              //             return data;
+              //
+              //     }
+              // );
 
-              that.loginSocket = <Subject<ILoginSocket>>that.wsService.getSubject().map(
-                  (response: MessageEvent): ILoginSocket => {
-                      let data = JSON.parse(response.data);
-                      console.log('login');
-                      if (data.type == LOGIN) {
-                          return data;
-                      }
-                  }
-              );
+              // that.loginSocket = <Subject<ILoginSocket>><unknown>that.wsService.getSubject();
+              // .map(
+              //     (response: MessageEvent): ILoginSocket => {
+              //         let data = JSON.parse(response.data);
+              //         console.log('login');
+              //             return data;
+              //
+              //     }
+              // );
+              that.subjectSocket = <Subject<MessageEvent>>that.wsService.getSubject();
               resolve();
           });
       });
   }
+
 }

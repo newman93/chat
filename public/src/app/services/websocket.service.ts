@@ -42,7 +42,6 @@ export class WebsocketService {
         console.log('next');
         if (ws.readyState === WebSocket.OPEN) {
           console.log('next2');
-
           ws.send(JSON.stringify(data));
         }
       }
