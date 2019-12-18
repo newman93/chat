@@ -13,7 +13,7 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-
+    //todo: detect user from token & move contact to post request
     /* ------------------- MessagesController ------------------- */
     Route::get('messages/from/{fromUsernameId}/to/{toUsernameId}/load', 'MessagesController@loadMessages');
     Route::post('messages/from/{fromUsernameId}/to/{toUsernameId}/send', 'MessagesController@sendMessage');
