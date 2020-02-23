@@ -57,8 +57,8 @@ export class AddUsersComponent implements OnInit {
   prepareAvatars(data) {
     data.map((value, index) =>
         {
-          value.contact.avatar = this.userDataService.getAvatar(value.contact.avatar, value.contact.username);
-          value.username.avatar = this.userDataService.getAvatar(value.username.avatar, value.username.username);
+          value.contact.avatar = this.Api.getAvatarApi(value.contact.username, value.contact.avatar);
+          value.username.avatar = this.Api.getAvatarApi(value.username.username, value.username.avatar);
           return value;
         }
     );
@@ -69,7 +69,7 @@ export class AddUsersComponent implements OnInit {
   prepareAvatarsFoundUsers(data) {
     data.map((value, index) =>
         {
-          value.avatar = this.userDataService.getAvatar(value.avatar, value.username);
+          value.avatar = this.Api.getAvatarApi(value.username, value.avatar);
           return value;
         }
     );

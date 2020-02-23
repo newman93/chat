@@ -51,7 +51,7 @@ export class SearchUserComponent implements OnInit {
   prepareAvatars(data) {
     data.map((value, index) =>
         {
-          value.avatar = this.userDataService.getAvatar(value.avatar, value.username);
+          value.avatar = this.Api.getAvatarApi(value.username, value.avatar);
 
           return value;
         }

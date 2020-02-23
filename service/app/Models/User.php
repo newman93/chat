@@ -8,6 +8,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 /**
  * Class User
@@ -22,9 +28,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property string $function
  * @property int $active
  * @property string $remember_token
- * @property \Carbon\Carbon $email_verified_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
  * 
  * @property \Illuminate\Database\Eloquent\Collection $contacts
  * @property \Illuminate\Database\Eloquent\Collection $invitations
@@ -32,9 +35,14 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App\Models
  */
-class User extends Eloquent
+class User extends Authenticatable implements JWTSubject
+//    , AuthenticatableContract, CanResetPasswordContract
 {
-	protected $casts = [
+    use Notifiable;
+//    Authenticatable, CanResetPassword,
+
+
+    protected $casts = [
 		'active' => 'int'
 	];
 
@@ -59,6 +67,8 @@ class User extends Eloquent
 		'remember_token',
 		'email_verified_at'
 	];
+
+	protected $table = 'users';
 
     /**
      * @return int
@@ -215,7 +225,7 @@ class User extends Eloquent
     /**
      * @param string $remember_token
      */
-    public function setRememberToken(string $remember_token): void
+    public function setRememberToken($remember_token): void
     {
         $this->remember_token = $remember_token;
     }
@@ -243,5 +253,16 @@ class User extends Eloquent
 	{
 		return $this->hasMany(\App\Models\Message::class, 'to_username');
 	}
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
 
 }
